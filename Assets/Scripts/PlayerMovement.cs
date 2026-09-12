@@ -2,16 +2,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speedwalk= 15f;
+    [SerializeField] private float speedWalk= 10f;
 
-    [SerializeField] private float speedrun= 3.5f;
+    [SerializeField] private float speedRun= 20f;
+
+    private float sprintTimer = 10;
 
     private float currentspeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentspeed = speedwalk;
+        currentspeed = speedWalk;
     }
 
     // Update is called once per frame
@@ -31,11 +33,22 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            currentspeed = speedrun;
+            if (sprintTimer > 0)
+            {
+                currentspeed = speedRun;
+                sprintTimer = -Time.deltaTime;
+                Debug.Log(sprintTimer);
+
+            }
         }
         else
         {
-            currentspeed = speedwalk;// para cambio de velocidad, se aceptan sugerencias
+            currentspeed = speedWalk;// para cambio de velocidad, se aceptan sugerencias
+            if (sprintTimer < 10)
+            {
+                sprintTimer = +Time.deltaTime;
+                Debug.Log(sprintTimer);
+                    }
         }
 
         if (Input.GetKey(KeyCode.A))

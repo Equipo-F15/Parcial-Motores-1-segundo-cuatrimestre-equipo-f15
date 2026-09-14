@@ -296,5 +296,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f8f97d776dfe74384f1eb16a658fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractionRaycaster
-  interactionRange: 3
-  rayOrigin: {fileID: 0}
+  interactionRange: 100
+  rayOrigin: {fileID: 3860228011554603261}

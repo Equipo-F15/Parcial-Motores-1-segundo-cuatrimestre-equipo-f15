@@ -26,7 +26,7 @@ public class InteractionRaycaster : MonoBehaviour
         {
             Debug.Log("Le pegó a: " + hit.collider.name);
 
-            IInteractable interactuable = hit.collider.GetComponent<IInteractable>();
+            IInteractable interactuable = hit.collider.GetComponentInParent<IInteractable>();
 
             if (interactuable != null)
             {

@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
                     }
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.D))//control de jugador gira sobre si mismo
         {
 
             //angulo euler rotar en y
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.A))
         {
 
             //angulo euler rotar en y

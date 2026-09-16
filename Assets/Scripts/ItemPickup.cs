@@ -6,11 +6,11 @@ public class ItemPickup : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // Busca si el objeto que lo chocó tiene el script ItemsManager
-        ItemsManager inventor = other.GetComponent<ItemsManager>();
+        ItemsManager inventory = other.GetComponent<ItemsManager>();
 
-        if (inventor != null)
+        if (inventory != null)
         {
-            inventor.RecogerItemDesdeSuelo();
+            inventory.RecogerItemDesdeSuelo();
 
             Destroy(gameObject);
         }

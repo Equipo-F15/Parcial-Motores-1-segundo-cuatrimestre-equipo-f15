@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 8963344362885233045}
   - component: {fileID: 7982561198848160116}
   - component: {fileID: 3639263910923030122}
+  - component: {fileID: 2759552480770166623}
   m_Layer: 0
   m_Name: pared delantera derecha ferreteria (12)
   m_TagString: Untagged
@@ -294,7 +295,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6393
+  m_VersionIndex: 6477
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -402,6 +403,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!65 &2759552480770166623
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164387405056890940}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 26.219578, y: 12.104686, z: 29.545135}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1183623149964964738
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +438,7 @@ GameObject:
   - component: {fileID: 1128721200932511071}
   - component: {fileID: 8753711890767314384}
   - component: {fileID: 4329782059343722799}
+  - component: {fileID: 6038060994174069182}
   m_Layer: 0
   m_Name: pared izquierda ferreteria
   m_TagString: Untagged
@@ -650,7 +673,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6393
+  m_VersionIndex: 6477
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -758,6 +781,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!65 &6038060994174069182
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183623149964964738}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 26.219574, y: 12.104686, z: 29.545134}
+  m_Center: {x: 0, y: 0, z: -0.0000019073486}
 --- !u!1 &1194619301222059621
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,6 +816,7 @@ GameObject:
   - component: {fileID: 6877893182173173516}
   - component: {fileID: 6346559086142072212}
   - component: {fileID: 5028483267553117793}
+  - component: {fileID: 2965810689162608406}
   m_Layer: 0
   m_Name: techo ferreteria (12)
   m_TagString: Untagged
@@ -1006,7 +1051,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6393
+  m_VersionIndex: 6477
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1114,6 +1159,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!65 &2965810689162608406
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194619301222059621}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 26.219578, y: 12.104686, z: 29.545135}
+  m_Center: {x: 0.0000038146973, y: 0.00012207031, z: 0}
 --- !u!1 &2191196453843272120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,6 +1194,7 @@ GameObject:
   - component: {fileID: 3692108056344787635}
   - component: {fileID: 5813909062314330841}
   - component: {fileID: 4920192641937272699}
+  - component: {fileID: 1541872681281439828}
   m_Layer: 0
   m_Name: pared izquierda derecha ferreteria (13)
   m_TagString: Untagged
@@ -1362,7 +1429,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6393
+  m_VersionIndex: 6477
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1470,6 +1537,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!65 &1541872681281439828
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2191196453843272120}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 26.219578, y: 12.104686, z: 29.545135}
+  m_Center: {x: 0, y: 0, z: 0.000015258789}
 --- !u!1 &2283766142980796982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,8 +1588,8 @@ Transform:
   m_GameObject: {fileID: 2283766142980796982}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.57, y: -3.36, z: 47.303917}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.3075, y: -4.775, z: 42.1639}
+  m_LocalScale: {x: 0.3554483, y: 0.3040931, z: 0.24677253}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4657175977133710121}
@@ -1718,7 +1806,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2762
+  m_VersionIndex: 2846
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1993,6 +2081,7 @@ GameObject:
   - component: {fileID: 2644566525055868009}
   - component: {fileID: 4213820880125585329}
   - component: {fileID: 8941693085886850755}
+  - component: {fileID: 7973209815612053835}
   m_Layer: 0
   m_Name: pared derecha ferreteria
   m_TagString: Untagged
@@ -2227,7 +2316,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6393
+  m_VersionIndex: 6477
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2335,6 +2424,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!65 &7973209815612053835
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6964649963720882948}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 26.219574, y: 12.104686, z: 29.545134}
+  m_Center: {x: 0, y: 0, z: -0.0000019073486}
 --- !u!1 &7185445087664932884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2349,6 +2459,7 @@ GameObject:
   - component: {fileID: 2675877915021709142}
   - component: {fileID: 8309775556742922106}
   - component: {fileID: 5653843305517878816}
+  - component: {fileID: 6084717201539411943}
   m_Layer: 0
   m_Name: pared tracera ferreteria (11)
   m_TagString: Untagged
@@ -2583,7 +2694,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6393
+  m_VersionIndex: 6477
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2691,6 +2802,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!65 &6084717201539411943
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7185445087664932884}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 26.219578, y: 12.104686, z: 29.545135}
+  m_Center: {x: 0.0000038146973, y: 0.00000047683716, z: -0.000061035156}
 --- !u!1 &8402674507498438097
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,8 +2853,8 @@ Transform:
   m_GameObject: {fileID: 8402674507498438097}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: -2.4499998, z: 37.950005}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1, y: -4.7959, z: 38.09}
+  m_LocalScale: {x: 1, y: 0.3917811, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4657175977133710121}
@@ -2939,7 +3071,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 6863
+  m_VersionIndex: 5249
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

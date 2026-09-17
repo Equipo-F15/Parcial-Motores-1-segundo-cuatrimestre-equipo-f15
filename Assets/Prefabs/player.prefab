@@ -388,6 +388,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speedWalk: 10
   speedRun: 20
+  currentLife: 10
+  maximunLife: 10
 --- !u!114 &5136142704040306224
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class ItemsManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            if (items > 0)
+            if (items > 0) //Si tiene mas de 0 items
             {
                 items--;
 
@@ -27,29 +27,17 @@ public class ItemsManager : MonoBehaviour
                 Debug.Log("No te quedan medicamentos");
             }
         }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (items < maxItems)
-            {
-                items++;
-                Debug.Log("Recogiste 1 medicamento. Total: " + items);
-            }
-            else //Si ya tenes 5 (o más)
-            {
-                Debug.Log("No podés llevar más medicamentos. ¡Inventario lleno!");
-            }
-        }
     }
     public void RecogerItemDesdeSuelo()
     {
-        if (items < maxItems)
+        if (items < maxItems) //Si tiene menos de la cantidad máxima
         {
             items++;
             Debug.Log("¡Agarraste un medicamento del piso! Total: " + items);
         }
-        else
+        else // Si no es asi
         {
-            Debug.Log("Inventario lleno, no podés levantarlo.");
+            Debug.Log("Inventario lleno, no podés agarrarlo.");
         }
     }
 }

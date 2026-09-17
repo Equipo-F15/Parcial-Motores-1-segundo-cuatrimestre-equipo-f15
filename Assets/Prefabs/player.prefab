@@ -222,10 +222,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.55008596
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.00043057508}
 --- !u!1 &7828392009811505849
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,9 +241,10 @@ GameObject:
   - component: {fileID: 9011576112569244407}
   - component: {fileID: 7136773470719164526}
   - component: {fileID: 5136142704040306224}
+  - component: {fileID: 1660058101577085512}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,10 +343,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.32168454
+  m_Radius: 0.3274637
   m_Height: 1.7466044
   m_Direction: 1
-  m_Center: {x: 0, y: -0.028155088, z: -0.004692495}
+  m_Center: {x: 0, y: -0.028155088, z: 0.0010866523}
 --- !u!54 &9011576112569244407
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -399,8 +400,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f8f97d776dfe74384f1eb16a658fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractionRaycaster
-  interactionRange: 100
+  interactionRange: 10
   rayOrigin: {fileID: 3860228011554603261}
+--- !u!114 &1660058101577085512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828392009811505849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f719af38b3232e648a2c7b01743bf325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemsManager
+  items: 0
+  maxItems: 5
 --- !u!1001 &1340427456685821328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -447,15 +462,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3390189226533260658, guid: 3cf4724430263ed47b0527e6e39f9445, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.049813703
+      value: 0.0498137
       objectReference: {fileID: 0}
     - target: {fileID: 3390189226533260658, guid: 3cf4724430263ed47b0527e6e39f9445, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000026506166
+      value: 0.000000029765328
       objectReference: {fileID: 0}
     - target: {fileID: 3390189226533260658, guid: 3cf4724430263ed47b0527e6e39f9445, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000013220115
+      value: -0.0000000014845641
       objectReference: {fileID: 0}
     - target: {fileID: 3390189226533260658, guid: 3cf4724430263ed47b0527e6e39f9445, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

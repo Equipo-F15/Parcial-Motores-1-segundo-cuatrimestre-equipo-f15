@@ -10,9 +10,9 @@ public class PlayerMovement : MonoBehaviour
 
     private float currentspeed;
 
-   
-    private int currentLife;
-    private int maximunLife;
+
+    [SerializeField] private int currentLife;
+    [SerializeField] private int maximunLife;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

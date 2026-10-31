@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: e13516ae49e3f24419cc4453cadddb8c
+=======
+guid: 02346dda13b051646936a758602bfc55
+>>>>>>> Personajes
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []

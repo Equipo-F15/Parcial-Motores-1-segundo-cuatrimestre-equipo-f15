@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 25494e0a062161b428850478a98b86ae
+=======
+guid: c30680ddaebb8284cb34cae64bc7378a
+>>>>>>> Personajes
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

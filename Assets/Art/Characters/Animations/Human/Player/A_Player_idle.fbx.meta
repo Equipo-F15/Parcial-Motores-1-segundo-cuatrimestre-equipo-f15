@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 220328feef4f29b4f902b04da88f7e9f
-=======
-guid: 5423f40eb7e1d474794da89ca596b601
->>>>>>> Personajes
+guid: 4b1501d7ec61b804fa662eb67f2d9f85
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -26,27 +22,20 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-<<<<<<< HEAD
-    animationCompression: 1
-=======
     animationCompression: 3
->>>>>>> Personajes
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-<<<<<<< HEAD
-    clipAnimations: []
-=======
     clipAnimations:
     - serializedVersion: 16
-      name: A_Player_death_forward
+      name: A_Player_idle
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 77
+      lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -70,7 +59,6 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
->>>>>>> Personajes
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -135,15 +123,6 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-<<<<<<< HEAD
-    hasExtraRoot: 0
-    skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
-  autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
-  humanoidOversampling: 1
-  avatarSetup: 0
-=======
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
@@ -151,7 +130,6 @@ ModelImporter:
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
->>>>>>> Personajes
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

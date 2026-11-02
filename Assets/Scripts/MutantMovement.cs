@@ -21,9 +21,9 @@ public class MutantMovement : MonoBehaviour
     {
         if (navAgent.velocity.magnitude != 0f)
         {
-            animator.setbool("walking", true);
+            animator.SetBool("walking", true);
         }
-        else { animator.setbool("walking", false); }
+        else { animator.SetBool("walking", false); }
                
     }
 

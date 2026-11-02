@@ -19,7 +19,7 @@ public class LifeScript : MonoBehaviour
         
     }
 
-    virtual void TakesDamage(damage)
+    public void TakesDamage( int damage)
     { currentLife = - damage; }
 
 }

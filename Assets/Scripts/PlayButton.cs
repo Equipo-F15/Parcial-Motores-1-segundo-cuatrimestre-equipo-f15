@@ -3,22 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private string gameSceneName = "map";
-
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
     public void Play()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(gameSceneName);
+        SceneManager.LoadScene("map");
     }
 
     public void Quit()
     {
+        Debug.Log("Quitting game...");
         Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

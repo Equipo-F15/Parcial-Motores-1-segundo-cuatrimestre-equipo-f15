@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    private Animator animator;
     [SerializeField] private float speedWalk= 10f;
 
     [SerializeField] private float speedRun= 20f;
@@ -17,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         currentLife = maximunLife;
         currentspeed = speedWalk;
     }
@@ -24,14 +27,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("IsWalking", false);//retorno a idle
+        animator.SetBool("IsRunning", false);
+
         if (Input.GetKey(KeyCode.W))
         {
+            animator.SetBool("IsWalking", true);
             transform.Translate(new Vector3(0, 0, 1) * currentspeed * Time.deltaTime);
         }
 
 
         if (Input.GetKey(KeyCode.S))
         {
+            animator.SetBool("IsWalking", true);
             transform.Translate(new Vector3(0, 0, -1) * currentspeed * Time.deltaTime);
 
         }
@@ -42,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.W))
                 {
+                    animator.SetBool("IsRunning", true);
                     currentspeed = speedRun;
                     sprintTimer = -Time.deltaTime;
                     Debug.Log(sprintTimer);
@@ -87,6 +96,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    //animaciones control
+    //void OnAnimatorMove()
+    //{
+    //    if (animator.GetBool("IsWalking")| animator.GetBool("IsRunning"))
+    //    {
+    //        currentspeed = (animator.deltaPosition / Time.deltaTime).magnitude;
+    //    }
+    //}
 
 
 

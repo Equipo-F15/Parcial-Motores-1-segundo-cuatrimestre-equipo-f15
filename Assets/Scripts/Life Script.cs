@@ -18,4 +18,8 @@ public class LifeScript : MonoBehaviour
     {
         
     }
+
+    public void TakesDamage( int damage)
+    { currentLife = - damage; }
+
 }

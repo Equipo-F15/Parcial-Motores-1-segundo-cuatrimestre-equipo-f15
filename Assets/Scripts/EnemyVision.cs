@@ -26,7 +26,7 @@ public class EnemyVision : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) < detectRange)
         {
             playerIsInRange = true;
-            Debug.Log("Player in range");
+            //Debug.Log("Player in range");
         }
         else
         { playerIsInRange = false; }
@@ -37,7 +37,7 @@ public class EnemyVision : MonoBehaviour
             if (hit.transform == player.transform)
             {
                 playerIsNotHidden = true;
-                Debug.Log("Player in open");
+                //Debug.Log("Player in open");
             }
             else { playerIsNotHidden = false; }
         }
@@ -48,7 +48,7 @@ public class EnemyVision : MonoBehaviour
 
         if(angle<detectAngle && angle>-1* detectAngle)
         { playerIsInAngle=true;
-            Debug.Log("Player in angle");
+            //Debug.Log("Player in angle");
         }
         else { playerIsInAngle = false; }
 

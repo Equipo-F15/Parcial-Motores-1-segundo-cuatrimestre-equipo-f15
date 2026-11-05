@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float speedRun= 20f;
 
-    private float sprintTimer = 10;
+    [SerializeField]  public float sprintTimer = 100;
 
     private float currentspeed;
 
@@ -30,10 +30,33 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("IsWalking", false);//retorno a idle
         animator.SetBool("IsRunning", false);
 
-        if (Input.GetKey(KeyCode.W))
+
+        if (sprintTimer < 100)
         {
-            animator.SetBool("IsWalking", true);
-            transform.Translate(new Vector3(0, 0, 1) * currentspeed * Time.deltaTime);
+            sprintTimer = +Time.deltaTime;
+            Debug.Log(sprintTimer);
+        }
+        
+
+        if (Input.GetKey(KeyCode.W) )
+        {
+            if (Input.GetKey(KeyCode.LeftShift)) //sprint con temporizador y solo hacia delante
+            {
+                if (sprintTimer > 0)
+                {
+                    {
+                        currentspeed = speedRun;
+                        animator.SetBool("IsRunning", true);
+                        sprintTimer = -Time.deltaTime;
+                        Debug.Log(sprintTimer);
+                    }
+                }
+            }
+            else
+            {
+                animator.SetBool("IsWalking", true);
+                transform.Translate(new Vector3(0, 0, 1) * currentspeed * Time.deltaTime);
+            }
         }
 
 
@@ -44,28 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (Input.GetKey(KeyCode.LeftShift)) //sprint con temporizador y solo hacia delante
-        {
-            if (sprintTimer > 0)
-            {
-                if (Input.GetKey(KeyCode.W))
-                {
-                    animator.SetBool("IsRunning", true);
-                    currentspeed = speedRun;
-                    sprintTimer = -Time.deltaTime;
-                    Debug.Log(sprintTimer);
-                }
-            }
-        }
-        else
-        {
-            currentspeed = speedWalk;// para cambio de velocidad, se aceptan sugerencias
-            if (sprintTimer < 10)
-            {
-                sprintTimer = +Time.deltaTime;
-                Debug.Log(sprintTimer);
-                    }
-        }
+       
 
         if (Input.GetKey(KeyCode.D))//control de jugador gira sobre si mismo
         {

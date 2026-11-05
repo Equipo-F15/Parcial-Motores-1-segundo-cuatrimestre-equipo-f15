@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MutantMovement : MonoBehaviour
+public class MutantMovement : LifeScript
 {
     
    private NavMeshAgent navAgent; //agente nav mesh
@@ -41,6 +41,11 @@ public class MutantMovement : MonoBehaviour
             }
         }
         //código patrullar fin
+
+        if (currentLife <= 0)
+        {
+            animator.SetBool("isDead", true);
+        }
 
     }
 

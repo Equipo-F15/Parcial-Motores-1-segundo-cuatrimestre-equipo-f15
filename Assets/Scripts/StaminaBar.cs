@@ -11,12 +11,29 @@ public class StaminaBarTest : MonoBehaviour
     
 
     void Start()
+{
+    if (player == null)
+        player = GameObject.FindGameObjectWithTag("Player");
+
+    if (player == null)
     {
-        playerscript = player.GetComponent<PlayerMovement>();
-        maxStamina = playerscript.maxStamina;
-        slider.maxValue = playerscript.maxStamina;
-        slider.value = currentStamina;
+        Debug.LogError("StaminaBarTest: no object with tag Player found", this);
+        enabled = false;
+        return;
     }
+
+    playerscript = player.GetComponent<PlayerMovement>();
+    if (playerscript == null)
+    {
+        Debug.LogError("StaminaBarTest: Player has no PlayerMovement script", this);
+        enabled = false;
+        return;
+    }
+
+    maxStamina = playerscript.maxStamina;
+    slider.maxValue = playerscript.maxStamina;
+    slider.value = currentStamina;
+}
 
     void Update()
     {

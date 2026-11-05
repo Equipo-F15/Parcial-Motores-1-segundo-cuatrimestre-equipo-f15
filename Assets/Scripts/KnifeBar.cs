@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class KnifeBarUI : MonoBehaviour
 {
     [SerializeField] private Image fillImage;
-    [SerializeField] private float costPerUse = 0.25f; // 25%
+    [SerializeField] private float costPerUse = 0.25f; // 25% per use
 
     private float current = 1f;
 
@@ -15,13 +15,8 @@ public class KnifeBarUI : MonoBehaviour
             Debug.LogError("KnifeBarUI: Fill Image is not assigned", this);
             return;
         }
-        UpdateBar();
-    }
 
-    private void Update()
-    {
-        
-        if (Input.GetKeyDown(KeyCode.H)) UseKnife();
+        UpdateBar();
     }
 
     public bool HasUses()
@@ -29,13 +24,16 @@ public class KnifeBarUI : MonoBehaviour
         return current > 0.001f;
     }
 
-    
-    public void UseKnife()
+    public bool UseKnife()
     {
-        if (!HasUses() || fillImage == null) return;
+        if (!HasUses() || fillImage == null)
+        {
+            return false;
+        }
 
         current = Mathf.Clamp01(current - costPerUse);
         UpdateBar();
+        return true;
     }
 
     private void UpdateBar()

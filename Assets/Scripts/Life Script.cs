@@ -4,12 +4,12 @@ public class LifeScript : MonoBehaviour
 {
     public int maxLife;
     public int currentLife;
-    public bool isDead;
+    public bool IsDead;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentLife = maxLife;
-        isDead = false;
+        IsDead = false;
         
     }
 
@@ -19,11 +19,13 @@ public class LifeScript : MonoBehaviour
         
     }
 
-    public void TakesDamage( int damage)
+    public void TakesDamage(int damage)
+{
+    currentLife -= damage;
+    if (currentLife <= 0)
     {
-        currentLife = - damage;
-        if (currentLife <= 0)
-        { isDead = true; }
+        IsDead = true;
     }
+}
 
 }

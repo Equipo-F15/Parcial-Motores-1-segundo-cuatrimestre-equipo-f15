@@ -2,39 +2,45 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField]float attackRange;
+    [SerializeField] float attackRange;
     [SerializeField] private Transform rayOrigin;
+    [SerializeField] private KnifeBarUI knifeBar;
     private LifeScript lifeScript;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        
+        if (knifeBar == null)
+        {
+            knifeBar = FindFirstObjectByType<KnifeBarUI>();
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (knifeBar != null && !knifeBar.HasUses())
+            {
+                Debug.Log("The knife is broken, you cannot use it anymore");
+                return;
+            }
+
             RaycastHit hit;
             bool huboImpacto = Physics.Raycast(rayOrigin.position, rayOrigin.forward, out hit, attackRange);
             if (huboImpacto)
             {
-                //Debug.Log("Le pegó a: " + hit.collider.name);
-
                 lifeScript = hit.collider.GetComponentInParent<LifeScript>();
 
                 if (lifeScript != null)
                 {
-                    //Debug.Log("Tiene IInteractable, llamando Interact()");
                     lifeScript.TakesDamage(1);
+                    if (knifeBar != null) knifeBar.UseKnife();
                 }
                 else
                 {
                     Debug.Log("El objeto NO tiene IInteractable");
                 }
             }
-
         }
     }
 }

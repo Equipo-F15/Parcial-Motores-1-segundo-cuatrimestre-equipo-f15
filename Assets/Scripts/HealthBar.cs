@@ -33,4 +33,12 @@ public class HealthBar : MonoBehaviour
         isDead = true;
         SceneManager.LoadScene("GameOver");
     }
+    void Update()
+{
+    // Si apretás la H, es como si te pegaran
+    if (Input.GetKeyDown(KeyCode.H))
+    {
+        TakeDamage(20);
+    }
+}
 }

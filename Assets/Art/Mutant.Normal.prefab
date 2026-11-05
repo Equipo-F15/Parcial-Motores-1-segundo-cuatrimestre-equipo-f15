@@ -86,6 +86,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b749525311015764993e4d8a8e657ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MutantMovement
+  maxLife: 10
+  currentLife: 0
+  isDead: 0
   patrolrange: 10
   patrolCenterPoint: {fileID: 0}
 --- !u!54 &5951825441946983314

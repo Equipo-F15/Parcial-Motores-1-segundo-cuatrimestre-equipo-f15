@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class LifeScript : MonoBehaviour
 {
-     int maxLife;
-     int currentLife;
-
+    public int maxLife;
+    public int currentLife;
+    public bool isDead;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentLife = maxLife;
-
+        isDead = false;
         
     }
 
@@ -20,6 +20,10 @@ public class LifeScript : MonoBehaviour
     }
 
     public void TakesDamage( int damage)
-    { currentLife = - damage; }
+    {
+        currentLife = - damage;
+        if (currentLife <= 0)
+        { isDead = true; }
+    }
 
 }

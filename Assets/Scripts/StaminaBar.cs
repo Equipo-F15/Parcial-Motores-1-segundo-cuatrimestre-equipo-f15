@@ -3,31 +3,25 @@ using UnityEngine.UI;
 
 public class StaminaBarTest : MonoBehaviour
 {
+    [SerializeField] GameObject player;
+    [SerializeField] PlayerMovement playerscript;
     public Slider slider;
-    public float maxStamina = 100f;
+    public float maxStamina;
     public float currentStamina;
-    public float drainRate = 20f;
-    public float regenRate = 15f;
+    
 
     void Start()
     {
-        currentStamina = maxStamina;
-        slider.maxValue = maxStamina;
+        playerscript = player.GetComponent<PlayerMovement>();
+        maxStamina = playerscript.maxStamina;
+        slider.maxValue = playerscript.maxStamina;
         slider.value = currentStamina;
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            currentStamina -= drainRate * Time.deltaTime;
-        }
-        else
-        {
-            currentStamina += regenRate * Time.deltaTime;
-        }
-
-        currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+        currentStamina = playerscript.sprintTimer;
+        //currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
         slider.value = currentStamina;
     }
 }

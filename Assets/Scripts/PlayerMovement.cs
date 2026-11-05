@@ -7,9 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speedWalk= 10f;
 
     [SerializeField] private float speedRun= 20f;
-
-    [SerializeField]  public float sprintTimer = 100;
-
+    public float maxStamina;
+    [SerializeField]  public float sprintTimer;
+    [SerializeField] bool IsRunning;
     private float currentspeed;
 
 
@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         currentLife = maximunLife;
         currentspeed = speedWalk;
+        sprintTimer = maxStamina;
     }
 
     // Update is called once per frame
@@ -29,28 +30,26 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool("IsWalking", false);//retorno a idle
         animator.SetBool("IsRunning", false);
+        currentspeed = speedWalk;
+        IsRunning = false;
 
-
-        if (sprintTimer < 100)
+        if (sprintTimer < maxStamina && IsRunning==false)
         {
-            sprintTimer = +Time.deltaTime;
-            Debug.Log(sprintTimer);
+            sprintTimer += Time.deltaTime;
+            //Debug.Log(sprintTimer);
         }
         
 
         if (Input.GetKey(KeyCode.W) )
         {
-            if (Input.GetKey(KeyCode.LeftShift)) //sprint con temporizador y solo hacia delante
+            if (Input.GetKey(KeyCode.LeftShift) && sprintTimer > 0) //sprint con temporizador y solo hacia delante
             {
-                if (sprintTimer > 0)
-                {
-                    {
-                        currentspeed = speedRun;
-                        animator.SetBool("IsRunning", true);
-                        sprintTimer = -Time.deltaTime;
-                        Debug.Log(sprintTimer);
-                    }
-                }
+                IsRunning = true;
+                transform.Translate(new Vector3(0, 0, 1) * currentspeed * Time.deltaTime);
+                currentspeed = speedRun;
+                animator.SetBool("IsRunning", true);
+                sprintTimer = sprintTimer-2*Time.deltaTime;
+                //Debug.Log(sprintTimer);
             }
             else
             {
@@ -64,10 +63,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsWalking", true);
             transform.Translate(new Vector3(0, 0, -1) * currentspeed * Time.deltaTime);
-
         }
-
-       
 
         if (Input.GetKey(KeyCode.D))//control de jugador gira sobre si mismo
         {
@@ -80,7 +76,6 @@ public class PlayerMovement : MonoBehaviour
         {
             //angulo euler rotar en y
             transform.Rotate(0, -50.0f * Time.deltaTime, 0, Space.Self);
-
         }
     }
     //fin update

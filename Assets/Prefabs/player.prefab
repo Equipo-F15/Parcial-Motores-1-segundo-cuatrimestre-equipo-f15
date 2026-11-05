@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7136773470719164526}
   - component: {fileID: 5136142704040306224}
   - component: {fileID: 1660058101577085512}
+  - component: {fileID: 4797102776289582077}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -194,6 +195,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemsManager
   items: 0
   maxItems: 5
+--- !u!114 &4797102776289582077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828392009811505849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4afa37088b3845149b6303091f0cab67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
+  attackRange: 3
+  rayOrigin: {fileID: 3860228011554603261}
 --- !u!1001 &1340427456685821328
 PrefabInstance:
   m_ObjectHideFlags: 0

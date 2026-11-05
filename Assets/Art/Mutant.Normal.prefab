@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1156988263776717777}
   - component: {fileID: 6416015082121859277}
   - component: {fileID: 2311580192963829152}
+  - component: {fileID: 4877005570526053089}
   - component: {fileID: 5951825441946983314}
   - component: {fileID: 1649178182391305642}
   m_Layer: 0
@@ -87,10 +88,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MutantMovement
   maxLife: 10
-  currentLife: 0
+  currentLife: 1
   isDead: 0
+  player: {fileID: 7828392009811505849, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
   patrolrange: 10
   patrolCenterPoint: {fileID: 0}
+  playerChase: 0
+--- !u!114 &4877005570526053089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8690491793394207732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010c5fb136ba8604293feaac80d87aab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MutantAttack
+  player: {fileID: 7828392009811505849, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+  distanceToPlayer: 0
+  distanceToAttack: 3
+  attackDelay: 5
+  attackAngle: 10
+  damage: 1
 --- !u!54 &5951825441946983314
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -3,44 +3,64 @@ using UnityEngine.AI;
 
 public class MutantMovement : LifeScript
 {
-    
+   [SerializeField] private GameObject player;
    private NavMeshAgent navAgent; //agente nav mesh
    private Animator animator;
 
    public float patrolrange; //rango por el cual patrulla
    public Transform patrolCenterPoint;
+   public bool playerChase;
+    private MutantAttack attackScript;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         navAgent = GetComponent<NavMeshAgent>(); //agente nav mesh
-        animator= GetComponentInChildren<Animator>();
+        attackScript = GetComponent<MutantAttack>();
+        animator = GetComponentInChildren<Animator>();
+        playerChase = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (navAgent.velocity.magnitude != 0f) //recproduce animacion caminar si se mueve
+        if (playerChase == false)
         {
-            animator.SetBool("walking", true);
-        }
-        else { animator.SetBool("walking", false); }
-
-
-        //código patrullar inicio
-
-        //para patrullar crea un punto aleatorio
-        if (navAgent.remainingDistance <= navAgent.stoppingDistance) 
-        {
-            Vector3 point;
-            if (RandomPoint(transform.position, patrolrange, out point))
+            if (navAgent.velocity.magnitude != 0f) //recproduce animacion caminar si se mueve
             {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //debug para ver
-                navAgent.SetDestination(point);
+                animator.SetBool("walking", true);
+            }
+            else { animator.SetBool("walking", false); }
+
+            //código patrullar inicio
+
+            //para patrullar crea un punto aleatorio
+            if (navAgent.remainingDistance <= navAgent.stoppingDistance)
+            {
+                Vector3 point;
+                
+                if (RandomPoint(transform.position, patrolrange, out point))
+                {
+                    Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //debug para ver
+                    navAgent.SetDestination(point);
+                }
+            }
+            //código patrullar fin
+        }
+
+        if (playerChase == true && attackScript.distanceToPlayer >= attackScript.distanceToAttack)
+        {
+            animator.SetBool("Running", true);
+            //chase player script
+            Vector3 playerPosition = player.transform.position;
+
+            {
+                Debug.DrawRay(playerPosition, Vector3.up, Color.blue, 1.0f); //debug para ver
+                navAgent.SetDestination(playerPosition);
+
             }
         }
-        //código patrullar fin
 
         if (currentLife <= 0)
         {

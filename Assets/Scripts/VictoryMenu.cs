@@ -13,7 +13,7 @@ public class VictoryMenu : MonoBehaviour
 
     public void PlayAgain()
     {
-        SceneManager.LoadScene("map");
+        SceneManager.LoadScene("New Map");
     }
 
     public void GoToMainMenu()

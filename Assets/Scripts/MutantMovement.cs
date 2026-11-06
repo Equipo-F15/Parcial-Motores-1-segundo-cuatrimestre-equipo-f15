@@ -37,7 +37,7 @@ public class MutantMovement : LifeScript
     void Update()
     {
         while (playerChase == false)
-            do { idleAudioSource.Play(); }
+             { idleAudioSource.Play(); }
         if (playerChase == false)
         {
             
@@ -66,7 +66,7 @@ public class MutantMovement : LifeScript
         if (playerChase == true && attackScript.distanceToPlayer >= attackScript.distanceToAttack)
         {
             while (playerChase == true)
-                do { 
+                { 
                     alertAudioVarSource.ReproducirSonidoConVariacion();
                     //chase player script
                     Vector3 playerPosition = player.transform.position;

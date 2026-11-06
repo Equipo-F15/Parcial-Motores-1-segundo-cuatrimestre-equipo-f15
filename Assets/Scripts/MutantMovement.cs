@@ -12,6 +12,14 @@ public class MutantMovement : LifeScript
    public bool playerChase;
     private MutantAttack attackScript;
 
+    [SerializeField] GameObject idle;
+    [SerializeField] AudioSource idleAudioSource;
+
+
+
+    [SerializeField] GameObject alert;
+    [SerializeField] VariacionSFX alertAudioVarSource;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,14 +27,20 @@ public class MutantMovement : LifeScript
         navAgent = GetComponent<NavMeshAgent>(); //agente nav mesh
         attackScript = GetComponent<MutantAttack>();
         animator = GetComponentInChildren<Animator>();
+        idleAudioSource = idle.GetComponent <AudioSource>();
+        alertAudioVarSource = idle.GetComponent<VariacionSFX>();
+
         playerChase = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        while (playerChase == false)
+            do { idleAudioSource.Play(); }
         if (playerChase == false)
         {
+            
             if (navAgent.velocity.magnitude != 0f) //recproduce animacion caminar si se mueve
             {
                 animator.SetBool("walking", true);
@@ -48,23 +62,29 @@ public class MutantMovement : LifeScript
             }
             //código patrullar fin
         }
-
+        
         if (playerChase == true && attackScript.distanceToPlayer >= attackScript.distanceToAttack)
         {
-            animator.SetBool("Running", true);
-            //chase player script
-            Vector3 playerPosition = player.transform.position;
+            while (playerChase == true)
+                do { 
+                    alertAudioVarSource.ReproducirSonidoConVariacion();
+                    //chase player script
+                    Vector3 playerPosition = player.transform.position;
 
-            {
-                Debug.DrawRay(playerPosition, Vector3.up, Color.blue, 1.0f); //debug para ver
-                navAgent.SetDestination(playerPosition);
 
-            }
-        }
+                    Debug.DrawRay(playerPosition, Vector3.up, Color.blue, 1.0f); //debug para ver
+                    navAgent.SetDestination(playerPosition);
+                }
+
+                animator.SetBool("Running", true);
+           
+        } else 
+        { animator.SetBool("Running", false); }
 
         if (currentLife <= 0)
         {
             animator.SetBool("isDead", true);
+            Destroy(gameObject, 1);
         }
 
     }

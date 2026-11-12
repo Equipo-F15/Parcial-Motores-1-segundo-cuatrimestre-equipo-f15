@@ -23,8 +23,11 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private TMP_Text itemUsesText;
     // Guarda una referencia al objeto que seleccionamos. Si no hay ningún objeto seleccionado, su valor será null.
     private InventoryItem selectedItem = null;
-    // Botón que permitirá utilizar el objeto seleccionado.
-    [SerializeField] private Button useButton;
+    // Guarda la pieza que queremos combinar con otro objeto.
+    private InventoryItem itemToCombine = null;
+
+    [SerializeField] private Button useButton; // Botón que permitirá utilizar el objeto seleccionado.
+    [SerializeField] private Button combineButton; // Botón que permitirá combinar objetos del inventario.
 
     private void Start()
     {
@@ -65,10 +68,20 @@ public class InventoryUI : MonoBehaviour
             // Cuando presione USAR, ejecuta UseSelectedItem().
             useButton.onClick.AddListener(UseSelectedItem);
         }
+        // Conecta el botón COMBINAR con su función.
+        if (combineButton != null)
+        {
+            combineButton.onClick.AddListener(StartCombination);
+        }
         // Al comenzar la partida, oculta el botón USAR.
         if (useButton != null)
         {
             useButton.gameObject.SetActive(false);
+        }
+        // Al comenzar, oculta el botón COMBINAR.
+        if (combineButton != null)
+        {
+            combineButton.gameObject.SetActive(false);
         }
     }
 
@@ -102,16 +115,57 @@ public class InventoryUI : MonoBehaviour
             int slotsRequired = item.itemData.slotsRequired;
 
             // Comprobar si la casilla seleccionada corresponde a este objeto.
-            if (slotIndex >= currentSlot &&
-                slotIndex < currentSlot + slotsRequired)
+            if (slotIndex >= currentSlot && slotIndex < currentSlot + slotsRequired)
             {
+
+                // Si estamos combinando objetos, esta selección corresponde al segundo objeto de la combinación.
+                if (itemToCombine != null)
+                {
+                    // Guarda la pieza antes de finalizar la combinación.
+                    InventoryItem repairPart = itemToCombine;
+
+                    // Desactiva el modo combinación.
+                    itemToCombine = null;
+
+                    // Si selecciona la misma pieza, cancelamos.
+                    if (item == repairPart)
+                    {
+                        Debug.Log("Combinación cancelada.");
+                    }
+                    // Si selecciona un objeto con durabilidad, intenta repararlo utilizando la pieza.
+                    else if (item.itemData.hasDurability)
+                    {
+                        bool repaired = itemsManager.RepairItem(
+                            item.itemData,
+                            repairPart.itemData
+                        );
+
+                        if (repaired)
+                        {
+                            Debug.Log("Combinación realizada correctamente.");
+                        }
+                        else
+                        {
+                            Debug.Log("No se pudo realizar la reparación.");
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Estos objetos no se pueden combinar.");
+                    }
+                }
+
                 // Guarda qué objeto seleccionó el jugador. Así puede identificarlo cuando quiera usarlo o eliminarlo.
                 selectedItem = item;
+                // Muestra COMBINAR solamente para piezas de reparación.
+                if (combineButton != null)
+                {
+                    bool canCombine = item.itemData.itemType == ItemType.Repair;
+                    combineButton.gameObject.SetActive(canCombine);
+                }
 
-                // Comprobar si el objeto seleccionado puede utilizarse.
-                bool canUse = item.itemData.itemType == ItemType.Consumable &&
-                              item.itemData.maxUses > 1 &&
-                              item.remainingUses > 0;
+                // Permite usar cualquier consumible que tenga usos disponibles.
+                bool canUse = item.itemData.itemType == ItemType.Consumable && item.remainingUses > 0;
 
                 // Muestra u oculta el botón según el resultado.
                 if (useButton != null)
@@ -124,10 +178,20 @@ public class InventoryUI : MonoBehaviour
                 // Muestra su descripción.
                 itemDescriptionText.text = item.itemData.description;
 
-                // Muestra sus usos restantes. Las etiquetas <color> permiten colorear el número.
-                itemUsesText.text = "Cantidad restante: <color=#8FCF9B>" +
-                    item.remainingUses + "/" + item.itemData.maxUses +
-                    "</color>";
+                // Si el objeto tiene durabilidad, muestra su estado.
+                if (item.itemData.hasDurability)
+                {
+                    itemUsesText.text = "Durabilidad: <color=#8FCF9B>" +
+                        item.currentDurability + "/" +
+                        item.itemData.maxDurability + "</color>";
+                }
+                else
+                {
+                    // Para los demás objetos sigue mostrando sus usos.
+                    itemUsesText.text = "Cantidad restante: <color=#8FCF9B>" +
+                        item.remainingUses + "/" +
+                        item.itemData.maxUses + "</color>";
+                }
 
                 return;
             }
@@ -135,9 +199,20 @@ public class InventoryUI : MonoBehaviour
             // Avanza según los espacios que ocupa el objeto.
             currentSlot += slotsRequired;
         }
+        // Si selecciona una casilla vacía, cancela cualquier combinación pendiente.
+        if (itemToCombine != null)
+        {
+            itemToCombine = null;
+            Debug.Log("Combinación cancelada.");
+        }
 
         // Si la casilla está vacía, quita la selección.
         selectedItem = null;
+        // No hay objeto seleccionado, oculta COMBINAR.
+        if (combineButton != null)
+        {
+            combineButton.gameObject.SetActive(false);
+        }
         // Oculta el botón porque no hay ningún objeto seleccionado.
         if (useButton != null)
         {
@@ -160,9 +235,8 @@ public class InventoryUI : MonoBehaviour
             return;
         }
 
-        // Por ahora solamente permite utilizar las píldoras. Comprueba que sea un consumible con más de un uso.
-        if (selectedItem.itemData.itemType != ItemType.Consumable ||
-            selectedItem.itemData.maxUses <= 1)
+        // Solamente permite utilizar objetos consumibles.
+        if (selectedItem.itemData.itemType != ItemType.Consumable)
         {
             Debug.Log("Este objeto todavía no se puede utilizar.");
             return;
@@ -315,6 +389,12 @@ public class InventoryUI : MonoBehaviour
             // El objeto ya no existe en el inventario.
             selectedItem = null;
 
+            // El objeto seleccionado desapareció del inventario.
+            if (combineButton != null)
+            {
+                combineButton.gameObject.SetActive(false);
+            }
+
             // Oculta el botón porque el objeto seleccionado desapareció.
             if (useButton != null)
             {
@@ -338,11 +418,97 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
-            // El objeto sigue existiendo. Actualiza sus usos por si cambiaron.
-            itemUsesText.text = "Cantidad restante: <color=#8FCF9B>" +
-                selectedItem.remainingUses + "/" +
-                selectedItem.itemData.maxUses + "</color>";
+            // Actualiza el texto según el tipo de objeto seleccionado.
+            if (selectedItem.itemData.hasDurability)
+            {
+                itemUsesText.text = "Durabilidad: <color=#8FCF9B>" +
+                    selectedItem.currentDurability + "/" +
+                    selectedItem.itemData.maxDurability + "</color>";
+            }
+            else
+            {
+                itemUsesText.text = "Cantidad restante: <color=#8FCF9B>" +
+                    selectedItem.remainingUses + "/" +
+                    selectedItem.itemData.maxUses + "</color>";
+            }
         }
     }
+
+    // Inicia el proceso de combinación de objetos.
+    private void StartCombination()
+    {
+        // Comprobacion que haya un objeto seleccionado.
+        if (selectedItem == null)
+        {
+            return;
+        }
+
+        // Por ahora solo permite iniciar combinaciones utilizando piezas de reparación.
+        if (selectedItem.itemData.itemType != ItemType.Repair)
+        {
+            return;
+        }
+
+        // Guarda la pieza seleccionada.
+        itemToCombine = selectedItem;
+
+        // Indica al jugador que seleccione el segundo objeto.
+        itemDescriptionText.text =
+            "Seleccioná el arma que querés reparar.";
+
+        // Oculta los botones mientras elegimos el arma.
+        if (combineButton != null)
+        {
+            combineButton.gameObject.SetActive(false);
+        }
+
+        if (useButton != null)
+        {
+            useButton.gameObject.SetActive(false);
+        }
+
+        Debug.Log("Modo combinación activado.");
+    }
+
+    // Cancela cualquier combinación que haya quedado pendiente.
+    public void CancelCombination()
+    {
+        // Si no estamos combinando, no hacemos nada.
+        if (itemToCombine == null)
+        {
+            return;
+        }
+
+        // Cancela la combinación.
+        itemToCombine = null;
+
+        // Quita la selección actual.
+        selectedItem = null;
+
+        // Limpia los textos del panel.
+        itemNameText.text = "";
+        itemDescriptionText.text = "";
+        itemUsesText.text = "";
+
+        // Oculta los botones.
+        if (useButton != null)
+            useButton.gameObject.SetActive(false);
+
+        if (combineButton != null)
+            combineButton.gameObject.SetActive(false);
+
+        // Restaura el borde normal de todas las casillas.
+        foreach (Outline outline in slotOutlines)
+        {
+            if (outline != null)
+            {
+                outline.effectColor = new Color32(89, 100, 116, 255);
+                outline.effectDistance = new Vector2(1, 1);
+            }
+        }
+
+        Debug.Log("Combinación cancelada al cerrar el inventario.");
+    }
+
 }
 

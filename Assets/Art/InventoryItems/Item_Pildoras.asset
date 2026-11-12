@@ -21,3 +21,7 @@ MonoBehaviour:
   canStack: 0
   maxStack: 1
   maxUses: 5
+  hasDurability: 0
+  maxDurability: 100
+  healthRecovery: 20
+  sanityRecovery: 0

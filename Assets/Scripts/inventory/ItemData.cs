@@ -9,7 +9,7 @@ public enum ItemType
     KeyItem      // Objetos importantes como la llave
 }
 
-// Permite crear objetos desde el menú Create de Unity. Los encontraremos en Create > Inventory > Item.
+// Permite crear objetos desde el menú Create de Unity. En Create > Inventory > Item.
 [CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Item")]
 
 public class ItemData : ScriptableObject
@@ -41,4 +41,19 @@ public class ItemData : ScriptableObject
     // Cantidad de usos que tiene un objeto al recogerlo.
     [Min(1)]
     public int maxUses = 1;
+
+    // Indica si el objeto utiliza un sistema de durabilidad.
+    public bool hasDurability = false;
+
+    // Durabilidad máxima del objeto.
+    [Min(1)]
+    public int maxDurability = 100;
+
+    // Cantidad de vida que recupera el objeto.
+    [Min(0)]
+    public int healthRecovery = 0;
+
+    // Cantidad de cordura que recupera el objeto.
+    [Min(0)]
+    public int sanityRecovery = 0;
 }

@@ -4,20 +4,27 @@ using UnityEngine;
 [Serializable]
 public class InventoryItem
 {
-    // Referencia al objeto que creamos con ItemData.
+    // Datos generales del objeto.
     public ItemData itemData;
 
-    // Cantidad de usos que le quedan a ESTE objeto.
+    // Usos restantes del objeto
     public int remainingUses;
 
-    // Constructor: se ejecuta cuando creamos un nuevo objeto dentro del inventario.
+    // Durabilidad actual del objeto
+    public int currentDurability;
+
+    // Constructor: se ejecuta cuando agregamos un objeto al inventario.
     public InventoryItem(ItemData data)
     {
-        // Guardamos la información del objeto.
         itemData = data;
 
-        // El objeto comienza con todos sus usos.
+        // Cada objeto comienza con todos sus usos disponibles.
         remainingUses = data.maxUses;
+
+        // Si el objeto utiliza durabilidad, comienza con el valor máximo.
+        if (data.hasDurability)
+        {
+            currentDurability = data.maxDurability;
+        }
     }
 }
-

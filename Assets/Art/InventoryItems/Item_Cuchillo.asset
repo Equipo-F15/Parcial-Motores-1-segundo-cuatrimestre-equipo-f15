@@ -21,3 +21,5 @@ MonoBehaviour:
   canStack: 0
   maxStack: 1
   maxUses: 1
+  hasDurability: 1
+  maxDurability: 100

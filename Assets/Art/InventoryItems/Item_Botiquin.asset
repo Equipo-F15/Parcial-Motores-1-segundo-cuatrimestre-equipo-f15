@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af60354017e78b46a2a7eea3aca49a9, type: 3}
+  m_Name: Item_Botiquin
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: Botiquin
+  description: "Un botiqu\xEDn de primeros auxilios. Recupera una gran cantidad de
+    salud al utilizarlo."
+  icon: {fileID: 0}
+  itemType: 1
+  slotsRequired: 2
+  canStack: 0
+  maxStack: 1
+  maxUses: 1

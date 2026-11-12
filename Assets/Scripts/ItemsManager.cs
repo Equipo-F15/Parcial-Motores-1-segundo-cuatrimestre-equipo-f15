@@ -1,43 +1,107 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemsManager : MonoBehaviour
 {
-    [SerializeField] int items = 1;
-    [SerializeField] int maxItems = 5;
+    // Cantidad máxima de espacios del inventario.
+    [SerializeField] private int maxSlots = 8;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Evento que avisa cuando cambia el contenido del inventario. Otros scripts como InventoryUI, podrán escuchar este aviso.
+    public event Action OnInventoryChanged;
+
+    // Lista que almacena los objetos que lleva el jugador.
+    [SerializeField]
+    private List<InventoryItem> items =
+        new List<InventoryItem>();
+
+    // Calcula cuántos espacios están ocupados.
+    public int GetUsedSlots()
     {
-        Debug.Log("Tengo " + items + " medicamentos.");
+        int usedSlots = 0;
+
+        // Recorre todos los objetos del inventario.
+        foreach (InventoryItem item in items)
+        {
+            usedSlots += item.itemData.slotsRequired;
+        }
+
+        return usedSlots;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Comprueba si hay espacio suficiente para un objeto.
+    public bool HasSpace(ItemData newItem)
     {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            if (items > 0) //Si tiene mas de 0 items
-            {
-                items--;
+        int availableSlots = maxSlots - GetUsedSlots();
 
-            Debug.Log("Consumiste 1 medicamento, te quedan " + items);
-            }
-            else
-            {
-                Debug.Log("No te quedan medicamentos");
-            }
-        }
+        return availableSlots >= newItem.slotsRequired;
     }
-    public void RecogerItemDesdeSuelo()
+
+    // Intenta agregar un objeto al inventario.
+    public bool AddItem(ItemData newItem)
     {
-        if (items < maxItems) //Si tiene menos de la cantidad máxima
+        // Comprobar que el objeto exista.
+        if (newItem == null)
         {
-            items++;
-            Debug.Log("¡Agarraste un medicamento del piso! Total: " + items);
+            Debug.LogWarning("No se asignó ningún objeto.");
+            return false;
         }
-        else // Si no es asi
+
+        // Si no hay espacio, no podemos recogerlo.
+        if (!HasSpace(newItem))
         {
-            Debug.Log("Inventario lleno, no podés agarrarlo.");
+            Debug.Log("Inventario lleno. No hay espacio para "
+                + newItem.itemName);
+
+            return false;
         }
+
+        // Crea una instancia del objeto con sus usos iniciales.
+        InventoryItem inventoryItem = new InventoryItem(newItem);
+
+        // Agrega el objeto a la lista.
+        items.Add(inventoryItem);
+
+        // Avisa que el inventario cambió.
+        OnInventoryChanged?.Invoke();
+
+        Debug.Log("Recogiste: " + newItem.itemName);
+
+        Debug.Log("Espacios ocupados: "
+            + GetUsedSlots() + "/" + maxSlots);
+
+        return true;
     }
+
+    // Permite consultar los objetos almacenados.
+    public List<InventoryItem> GetItems()
+    {
+        return items;
+    }
+
+    // Elimina un objeto específico del inventario.
+    public bool RemoveItem(InventoryItem item)
+    {
+        // Comprobar que el objeto exista.
+        if (item == null)
+        {
+            return false;
+        }
+
+        // Intenta eliminarlo de la lista.
+        bool removed = items.Remove(item);
+
+        // Si consigue eliminarlo, avisa a la interfaz.
+        if (removed)
+        {
+            Debug.Log("Objeto eliminado: " + item.itemData.itemName);
+
+            // Avisa que cambió el contenido del inventario.
+            OnInventoryChanged?.Invoke();
+        }
+
+        // Devuelve el resultado de la operación.
+        return removed;
+    }
+
 }

@@ -2,16 +2,34 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    // Este método detecta cuando otro objeto entra en su espacio
-    void OnTriggerEnter(Collider other)
+    // Objeto que representa este GameObject del escenario.
+    [SerializeField] private ItemData itemData;
+
+    // Se ejecuta cuando otro Collider entra en el Trigger de este objeto.
+    private void OnTriggerEnter(Collider other)
     {
-        // Busca si el objeto que lo chocó tiene el script ItemsManager
+        // Busca el inventario en el objeto que entró.
         ItemsManager inventory = other.GetComponent<ItemsManager>();
 
-        if (inventory != null)
+        // Si el objeto que entró no tiene inventario, no hace nada.
+        if (inventory == null)
         {
-            inventory.RecogerItemDesdeSuelo();
+            return;
+        }
 
+        // Comprobar que haya asignado un ItemData.
+        if (itemData == null)
+        {
+            Debug.LogWarning("Este objeto no tiene ItemData asignado.");
+            return;
+        }
+
+        // Intenta agregar el objeto al inventario.
+        bool collected = inventory.AddItem(itemData);
+
+        // Solamente destruye el objeto del escenario cuando se agregó correctamente al inventario.
+        if (collected)
+        {
             Destroy(gameObject);
         }
     }

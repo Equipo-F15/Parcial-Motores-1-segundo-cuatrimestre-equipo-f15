@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool IsRunning;
     private float currentspeed;
 
-
+    
     [SerializeField] private int currentLife;
     [SerializeField] private int maximunLife;
 
@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         currentLife = maximunLife;
         currentspeed = speedWalk;
         sprintTimer = maxStamina;
+        
     }
 
     // Update is called once per frame

@@ -13,6 +13,9 @@ public class InventoryItem
     // Durabilidad actual del objeto
     public int currentDurability;
 
+    // Casilla donde comienza este objeto dentro del inventario. -1 significa que todavía no tiene una posición asignada.
+    public int startSlot = -1;
+
     // Constructor: se ejecuta cuando agregamos un objeto al inventario.
     public InventoryItem(ItemData data)
     {

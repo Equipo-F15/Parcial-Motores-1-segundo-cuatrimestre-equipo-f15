@@ -29,6 +29,36 @@ public class ItemsManager : MonoBehaviour
         return usedSlots;
     }
 
+    // Reorganiza los objetos para que ninguno quede dividido entre filas.
+    private void ReorganizeItems()
+    {
+        // Primero ubica los objetos que ocupan 2 espacios. Después coloca los objetos pequeños en los espacios restantes.
+        List<InventoryItem> sortedItems = new List<InventoryItem>(items);
+
+        sortedItems.Sort((a, b) => b.itemData.slotsRequired.CompareTo(a.itemData.slotsRequired));
+
+        int nextSlot = 0;
+
+        foreach (InventoryItem item in sortedItems)
+        {
+            int requiredSlots = item.itemData.slotsRequired;
+
+            // Si el objeto no entra en lo que queda de la fila, comenzamos en la siguiente.
+            int column = nextSlot % 4;
+
+            if (column + requiredSlots > 4)
+            {
+                nextSlot += 4 - column;
+            }
+
+            // Guarda la posición inicial del objeto.
+            item.startSlot = nextSlot;
+
+            // Avanza según los espacios que ocupa.
+            nextSlot += requiredSlots;
+        }
+    }
+
     // Comprueba si hay espacio suficiente para un objeto.
     public bool HasSpace(ItemData newItem)
     {
@@ -61,6 +91,9 @@ public class ItemsManager : MonoBehaviour
 
         // Agrega el objeto a la lista.
         items.Add(inventoryItem);
+
+        // Reorganiza las posiciones después de recoger un objeto.
+        ReorganizeItems();
 
         // Avisa que el inventario cambió.
         OnInventoryChanged?.Invoke();
@@ -95,6 +128,9 @@ public class ItemsManager : MonoBehaviour
         if (removed)
         {
             Debug.Log("Objeto eliminado: " + item.itemData.itemName);
+
+            // Reacomoda los objetos que quedan.
+            ReorganizeItems();
 
             // Avisa que cambió el contenido del inventario.
             OnInventoryChanged?.Invoke();

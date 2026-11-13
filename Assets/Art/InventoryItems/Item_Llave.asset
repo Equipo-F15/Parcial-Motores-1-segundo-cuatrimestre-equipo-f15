@@ -15,9 +15,13 @@ MonoBehaviour:
   itemName: Llave
   description: "Una vieja llave met\xE1lica. Parece pertenecer al candado de una
     reja que bloquea la salida."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 3fcfae2d50dab574488cac8dff56426d, type: 3}
   itemType: 3
   slotsRequired: 1
   canStack: 0
   maxStack: 1
   maxUses: 1
+  hasDurability: 0
+  maxDurability: 100
+  healthRecovery: 0
+  sanityRecovery: 0

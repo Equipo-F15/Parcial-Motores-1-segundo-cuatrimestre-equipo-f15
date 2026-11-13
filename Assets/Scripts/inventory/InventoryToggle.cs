@@ -17,19 +17,30 @@ public class InventoryToggle : MonoBehaviour
 
     private void Update()
     {
-        // Detecta cuando el jugador presiona Tab.
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            // Cambia entre abierto y cerrado.
+            // Cambia el estado del inventario.
             isOpen = !isOpen;
 
             // Muestra u oculta el panel.
             inventoryPanel.SetActive(isOpen);
-        }
-        // Si cerras el inventario, cancela una posible combinación.
-        if (!isOpen && inventoryUI != null)
-        {
-            inventoryUI.CancelCombination();
+
+            if (inventoryUI != null)
+            {
+                if (isOpen)
+                {
+                    // Fuerza a Unity a actualizar las posiciones de los elementos de la interfaz.
+                    Canvas.ForceUpdateCanvases();
+
+                    // Actualiza los íconos con el panel abierto.
+                    inventoryUI.UpdateInventoryUI();
+                }
+                else
+                {
+                    // Cancela cualquier combinación pendiente.
+                    inventoryUI.CancelCombination();
+                }
+            }
         }
     }
 }

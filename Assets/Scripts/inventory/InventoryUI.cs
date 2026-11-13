@@ -14,6 +14,8 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Button[] slotButtons = new Button[8];
     // Guarda los bordes de las 8 casillas. Los utiliza para resaltar el objeto seleccionado.
     [SerializeField] private Outline[] slotOutlines = new Outline[8];
+    // Imágenes utilizadas para mostrar objetos de dos espacios. Cada objeto grande tendrá su propia imagen.
+    [SerializeField] private Image[] largeItemIcons = new Image[4];
 
     // Texto que muestra el nombre del objeto seleccionado.
     [SerializeField] private TMP_Text itemNameText;
@@ -105,17 +107,16 @@ public class InventoryUI : MonoBehaviour
         // Obtiene los objetos guardados en el inventario.
         List<InventoryItem> items = itemsManager.GetItems();
 
-        // Indica qué casilla esta recorriendo.
-        int currentSlot = 0;
-
-        // Recorre todos los objetos del inventario.
-        foreach (InventoryItem item in items)
+        foreach (var item in items)
         {
-            // Consulta cuántos espacios ocupa este objeto.
+            // Obtiene la posición real del objeto.
+            int startSlot = item.startSlot;
+
+            // Consulta cuántos espacios ocupa.
             int slotsRequired = item.itemData.slotsRequired;
 
-            // Comprobar si la casilla seleccionada corresponde a este objeto.
-            if (slotIndex >= currentSlot && slotIndex < currentSlot + slotsRequired)
+            // Comprueba si hicimos clic en alguna de sus casillas.
+            if (slotIndex >= startSlot && slotIndex < startSlot + slotsRequired)
             {
 
                 // Si estamos combinando objetos, esta selección corresponde al segundo objeto de la combinación.
@@ -195,9 +196,6 @@ public class InventoryUI : MonoBehaviour
 
                 return;
             }
-
-            // Avanza según los espacios que ocupa el objeto.
-            currentSlot += slotsRequired;
         }
         // Si selecciona una casilla vacía, cancela cualquier combinación pendiente.
         if (itemToCombine != null)
@@ -274,34 +272,31 @@ public class InventoryUI : MonoBehaviour
     // Resalta todas las casillas que pertenecen al objeto seleccionado.
     private void HighlightSelectedSlot(int selectedIndex)
     {
-        // Obtiene los objetos del inventario.
         List<InventoryItem> items = itemsManager.GetItems();
 
-        // Indica dónde comienza cada objeto dentro de las casillas.
-        int currentSlot = 0;
-
-        // Por defecto, no hay ningún objeto seleccionado.
         int firstSlot = -1;
         int lastSlot = -1;
 
-        // Busca a qué objeto pertenece la casilla seleccionada.
         foreach (InventoryItem item in items)
         {
+            // Obtiene la posición real del objeto.
+            int startSlot = item.startSlot;
+
+            // Consulta cuántas casillas ocupa.
             int slotsRequired = item.itemData.slotsRequired;
 
-            // Comprueba si la casilla pertenece a este objeto.
-            if (selectedIndex >= currentSlot &&
-                selectedIndex < currentSlot + slotsRequired)
+            // Comprueba si seleccionamos alguna de sus casillas.
+            if (selectedIndex >= startSlot &&
+                selectedIndex < startSlot + slotsRequired)
             {
-                // Guarda la primera y última casilla del objeto.
-                firstSlot = currentSlot;
-                lastSlot = currentSlot + slotsRequired - 1;
+                // Primera casilla ocupada por el objeto.
+                firstSlot = startSlot;
+
+                // Última casilla ocupada por el objeto.
+                lastSlot = startSlot + slotsRequired - 1;
 
                 break;
             }
-
-            // Avanza hasta el siguiente objeto.
-            currentSlot += slotsRequired;
         }
 
         // Recorre los bordes de todas las casillas.
@@ -339,7 +334,7 @@ public class InventoryUI : MonoBehaviour
     // Actualiza las imágenes de las 8 casillas.
     public void UpdateInventoryUI()
     {
-        // Primero limpia todas las casillas.
+        // Primero limpia los íconos de las 8 casillas.
         foreach (Image icon in slotIcons)
         {
             if (icon != null)
@@ -349,33 +344,66 @@ public class InventoryUI : MonoBehaviour
             }
         }
 
-        // Obtiene los objetos del inventario.
+        // Después oculta todas las imágenes grandes.
+        foreach (Image icon in largeItemIcons)
+        {
+            if (icon != null)
+            {
+                icon.gameObject.SetActive(false);
+            }
+        }
+
         List<InventoryItem> items = itemsManager.GetItems();
 
-        // Indica la próxima casilla disponible.
-        int slotIndex = 0;
+        // Indica qué imagen grande vamos a utilizar.
+        int largeIconIndex = 0;
 
-        // Recorre todos los objetos recogidos.
         foreach (InventoryItem item in items)
         {
-            // Comprueba que haya espacio.
-            if (slotIndex >= slotIcons.Length)
-            {
-                break;
-            }
+            // Posición real del objeto dentro del inventario.
+            int slotIndex = item.startSlot;
 
-            // Obtiene los datos del objeto.
+            if (slotIndex < 0 || slotIndex >= slotIcons.Length)
+                continue;
+
             ItemData data = item.itemData;
 
-            // Mostrar su imagen en la casilla.
-            if (slotIcons[slotIndex] != null && data.icon != null)
+            // Objetos que ocupan dos casillas.
+            if (data.slotsRequired == 2)
             {
-                slotIcons[slotIndex].sprite = data.icon;
-                slotIcons[slotIndex].gameObject.SetActive(true);
-            }
+                // Busca una imagen grande disponible.
+                if (largeIconIndex < largeItemIcons.Length)
+                {
+                    Image largeIcon = largeItemIcons[largeIconIndex];
 
-            // Avanza según los espacios que ocupa el objeto.
-            slotIndex += data.slotsRequired;
+                    if (largeIcon != null && data.icon != null)
+                    {
+                        // Asigna el sprite correspondiente.
+                        largeIcon.sprite = data.icon;
+
+                        // Evita deformar la imagen.
+                        largeIcon.preserveAspect = true;
+
+                        // Activa la imagen.
+                        largeIcon.gameObject.SetActive(true);
+
+                        // La coloca sobre las dos casillas.
+                        PositionLargeItemIcon(item, largeIcon);
+                    }
+
+                    // La próxima imagen grande será para otro objeto.
+                    largeIconIndex++;
+                }
+            }
+            else
+            {
+                // Los objetos de una casilla siguen funcionando igual.
+                if (slotIcons[slotIndex] != null && data.icon != null)
+                {
+                    slotIcons[slotIndex].sprite = data.icon;
+                    slotIcons[slotIndex].gameObject.SetActive(true);
+                }
+            }
         }
         // Si no tenemos ningún objeto seleccionado, no hace nada más.
         if (selectedItem == null)
@@ -418,6 +446,8 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
+            // Mantiene el resaltado en la posición actual del objeto.
+            HighlightSelectedSlot(selectedItem.startSlot);
             // Actualiza el texto según el tipo de objeto seleccionado.
             if (selectedItem.itemData.hasDurability)
             {
@@ -510,5 +540,64 @@ public class InventoryUI : MonoBehaviour
         Debug.Log("Combinación cancelada al cerrar el inventario.");
     }
 
+    // Coloca una imagen grande sobre las dos casillas de un objeto.
+    private void PositionLargeItemIcon(InventoryItem item, Image icon)
+    {
+        // Comprobacion que el objeto y la imagen sean válidos.
+        if (item == null || icon == null)
+            return;
+
+        int startSlot = item.startSlot;
+
+        // Solamente trabaja con objetos de dos espacios.
+        if (item.itemData.slotsRequired != 2)
+            return;
+
+        // Evita posiciones fuera del inventario.
+        if (startSlot < 0 || startSlot + 1 >= slotButtons.Length)
+            return;
+
+        // Obtiene las dos casillas ocupadas.
+        RectTransform firstSlot =
+            slotButtons[startSlot].GetComponent<RectTransform>();
+
+        RectTransform secondSlot =
+            slotButtons[startSlot + 1].GetComponent<RectTransform>();
+
+        // Obtiene el RectTransform de la imagen recibida.
+        RectTransform largeRect =
+            icon.GetComponent<RectTransform>();
+
+        RectTransform parentRect =
+            largeRect.parent as RectTransform;
+
+        // Calcula las posiciones respecto al padre.
+        Vector3[] corners = new Vector3[4];
+
+        firstSlot.GetWorldCorners(corners);
+        Vector3 firstLeft = parentRect.InverseTransformPoint(corners[0]);
+
+        secondSlot.GetWorldCorners(corners);
+        Vector3 secondRight = parentRect.InverseTransformPoint(corners[2]);
+
+        // Calcula el centro y el tamaño.
+        Vector3 center = (firstLeft + secondRight) / 2f;
+
+        float width = secondRight.x - firstLeft.x;
+        float height = secondRight.y - firstLeft.y;
+
+        float margin = 12f;
+
+        largeRect.anchorMin = new Vector2(0.5f, 0.5f);
+        largeRect.anchorMax = new Vector2(0.5f, 0.5f);
+        largeRect.pivot = new Vector2(0.5f, 0.5f);
+
+        largeRect.anchoredPosition = new Vector2(center.x, center.y);
+
+        largeRect.sizeDelta = new Vector2(
+            Mathf.Max(0f, width - margin * 2f),
+            Mathf.Max(0f, height - margin * 2f)
+        );
+    }
 }
 

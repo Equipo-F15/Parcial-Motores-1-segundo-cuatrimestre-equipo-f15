@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Cuchillo
   description: "Arma cuerpo a cuerpo. Su durabilidad disminuye con el uso y puede
     repararse con piezas de reparaci\xF3n."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 9946e80ff0638f449897b6a0dd310e0f, type: 3}
   itemType: 0
   slotsRequired: 1
   canStack: 0
@@ -23,3 +23,5 @@ MonoBehaviour:
   maxUses: 1
   hasDurability: 1
   maxDurability: 100
+  healthRecovery: 0
+  sanityRecovery: 0

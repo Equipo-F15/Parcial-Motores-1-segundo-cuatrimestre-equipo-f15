@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Botiquin
   description: "Un botiqu\xEDn de primeros auxilios. Recupera una gran cantidad de
     salud al utilizarlo."
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 897794ab649915842af9bc0d9c5dcd87, type: 3}
   itemType: 1
   slotsRequired: 2
   canStack: 0

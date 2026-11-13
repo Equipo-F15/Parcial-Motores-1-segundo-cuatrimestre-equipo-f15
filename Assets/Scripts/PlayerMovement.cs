@@ -92,8 +92,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("estas muerto");
             }
-        }
+        }    
     }
+
+    //public void Death()
+    //{ Destroy(gameObject, 1); }
 
     //animaciones control
     //void OnAnimatorMove()

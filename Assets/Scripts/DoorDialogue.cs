@@ -42,9 +42,6 @@ public class DoorDialogue : MonoBehaviour
         // Evita que el audio se repita en bucle.
         audioSource.loop = false;
 
-        // Configura el audio como 2D para escucharlo sin depender de la distancia.
-        audioSource.spatialBlend = 0f;
-
         // Oculta el subtítulo al iniciar, siempre que no haya otro diálogo activo.
         if (subtitleText != null && activeDialogue == null)
         {

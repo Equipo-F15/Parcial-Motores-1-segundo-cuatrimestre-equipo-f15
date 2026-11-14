@@ -66,7 +66,7 @@ AudioMixerController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Estados
-  m_OutputGroup: {fileID: 0}
+  m_OutputGroup: {fileID: 3413611770894285577, guid: 5c71e83be82d55044a9c306573683354, type: 2}
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
   - {fileID: 24500006}

@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: maxLife
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2311580192963829152, guid: eacce4827200dd941a04abeb306cde9a, type: 3}
+      propertyPath: playerChase
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2752191082020588602, guid: eacce4827200dd941a04abeb306cde9a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -213.59233
@@ -58,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8690491793394207732, guid: eacce4827200dd941a04abeb306cde9a, type: 3}
       propertyPath: m_Name
-      value: Mutant.Normal Variant
+      value: Fake.Mutant.Normal Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

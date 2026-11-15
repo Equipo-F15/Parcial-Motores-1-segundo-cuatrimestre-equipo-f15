@@ -56,7 +56,7 @@ public class MutantMovement : LifeScript
                 
                 if (RandomPoint(transform.position, patrolrange, out point))
                 {
-                    Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //debug para ver
+                    //Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //debug para ver
                     navAgent.SetDestination(point);
                 }
             }

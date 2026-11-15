@@ -9,6 +9,7 @@ public class SanityScript : MonoBehaviour
 
     public float timerFakeMSpawner;
     [SerializeField] float timerFakeMSpawnerMax;
+    float distanceToPoint;
 
     public GameObject fakeMutant;
 
@@ -36,14 +37,20 @@ public class SanityScript : MonoBehaviour
                 Vector3 point;
                 if (RandomPoint(transform.position, spawnerRange, out point))
                 {
-                    
-                   //instanciate fakeMutant(point);
+
+                    Instantiate ( fakeMutant, point, transform.rotation );
                 }
             }
         }
 
         
     }
+
+
+    public void SanityUp(float amount)
+    { sanity += amount; }
+
+
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
         Vector3 randomPoint = center + Random.insideUnitSphere * range;

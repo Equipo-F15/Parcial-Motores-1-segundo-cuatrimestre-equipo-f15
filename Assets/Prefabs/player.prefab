@@ -444,6 +444,7 @@ GameObject:
   - component: {fileID: 5136142704040306224}
   - component: {fileID: 1660058101577085512}
   - component: {fileID: 4797102776289582077}
+  - component: {fileID: 6318395247440574894}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -640,6 +641,26 @@ MonoBehaviour:
   attackRange: 3
   rayOrigin: {fileID: 3860228011554603261}
   knifeBar: {fileID: 0}
+--- !u!114 &6318395247440574894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828392009811505849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dcdd8aebcee4ef45a9b59ceff68af7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SanityScript
+  sanity: 100
+  sanityMax: 100
+  sanityToSpawn: 0
+  timerFakeMSpawner: 10
+  timerFakeMSpawnerMax: 0
+  fakeMutant: {fileID: 0}
+  spawnerRange: 10
+  spawnerCenterPoint: {fileID: 0}
 --- !u!1001 &1340427456685821328
 PrefabInstance:
   m_ObjectHideFlags: 0

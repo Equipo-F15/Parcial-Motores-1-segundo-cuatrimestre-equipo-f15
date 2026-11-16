@@ -41,13 +41,13 @@ AudioSource:
   m_GameObject: {fileID: 1286907399434189083}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6247455289659645737, guid: 5c71e83be82d55044a9c306573683354, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 284f439f684c66d418ed0aa260a42995, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.8
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -170,7 +170,7 @@ AudioSource:
   m_GameObject: {fileID: 1952054453136523017}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6247455289659645737, guid: 5c71e83be82d55044a9c306573683354, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 252c0263df3ce434bbc994bbf3c6d5fb, type: 3}
   m_PlayOnAwake: 0
@@ -300,13 +300,13 @@ AudioSource:
   m_GameObject: {fileID: 5728655619840475154}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6247455289659645737, guid: 5c71e83be82d55044a9c306573683354, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.85
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -421,6 +421,7 @@ GameObject:
   - component: {fileID: 4877005570526053089}
   - component: {fileID: 5951825441946983314}
   - component: {fileID: 1649178182391305642}
+  - component: {fileID: 4560545818923849455}
   m_Layer: 0
   m_Name: Mutant.Normal
   m_TagString: Untagged
@@ -500,11 +501,7 @@ MonoBehaviour:
   currentLife: 1
   IsDead: 0
   player: {fileID: 7828392009811505849, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
-  patrolrange: 10
-  patrolCenterPoint: {fileID: 0}
   playerChase: 0
-  idle: {fileID: 1286907399434189083}
-  idleAudioSource: {fileID: 0}
   alert: {fileID: 5728655619840475154}
   alertAudioVarSource: {fileID: 0}
 --- !u!114 &4877005570526053089
@@ -575,6 +572,24 @@ CapsuleCollider:
   m_Height: 4.168961
   m_Direction: 1
   m_Center: {x: -0.0038809776, y: 1.5844653, z: -0.034015536}
+--- !u!114 &4560545818923849455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8690491793394207732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e70aa4c3f7c324d9d3d71e5bd24622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MutantPatrolScript
+  player: {fileID: 7828392009811505849, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+  patrolrange: 11
+  patrolCenterPoint: {fileID: 2752191082020588602}
+  playerChase: 0
+  idle: {fileID: 1286907399434189083}
+  idleAudioSource: {fileID: 0}
 --- !u!1001 &7307280115489617099
 PrefabInstance:
   m_ObjectHideFlags: 0

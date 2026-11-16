@@ -13,13 +13,13 @@ public class EnemyVision : MonoBehaviour
     [SerializeField] private float detectRange;
     [SerializeField] private float detectAngle;
 
-    MutantMovement movementScript;
+    MutantChaseScript chaseScript;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        movementScript = GetComponent<MutantMovement>();
+        chaseScript = GetComponent<MutantChaseScript>();
     }
 
     // Update is called once per frame
@@ -49,13 +49,11 @@ public class EnemyVision : MonoBehaviour
         float angle=  Vector3.SignedAngle(side1, side2, Vector3.up);
 
         if(angle<detectAngle && angle>-1* detectAngle)
-        { playerIsInAngle=true;
-            //Debug.Log("Player in angle");
-        }
+        { playerIsInAngle=true;}
         else { playerIsInAngle = false; }
 
         if(playerIsInAngle == true && playerIsInRange == true && playerIsNotHidden == true)
-        { movementScript.playerChase = true; }
+        { chaseScript.playerChase = true; }
 
     }
 }

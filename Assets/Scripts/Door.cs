@@ -7,9 +7,11 @@ public class Door : MonoBehaviour, IInteractable
     private bool isOpen = false;
     private Quaternion closedRotation;
     private Quaternion openRotation;
+    AudioSource doorSound;
 
     private void Start()
     {
+        doorSound = GetComponent<AudioSource>();
         closedRotation = transform.rotation;
         openRotation = Quaternion.Euler(0, openAngle, 0) * closedRotation;
     }
@@ -18,6 +20,7 @@ public class Door : MonoBehaviour, IInteractable
     {
         isOpen = !isOpen;
 
+        doorSound.Play();
         if (isOpen)
         {
             transform.rotation = openRotation;

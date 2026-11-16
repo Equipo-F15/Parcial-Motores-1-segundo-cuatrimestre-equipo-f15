@@ -36,7 +36,7 @@ public class MutantMovement : LifeScript
     // Update is called once per frame
     void Update()
     {
-        while (playerChase == false)
+        if (playerChase == false)
              { idleAudioSource.Play(); }
         if (playerChase == false)
         {
@@ -65,9 +65,11 @@ public class MutantMovement : LifeScript
         
         if (playerChase == true && attackScript.distanceToPlayer >= attackScript.distanceToAttack)
         {
+            idleAudioSource.Stop();
+            alertAudioVarSource.ReproducirSonidoConVariacion();
             while (playerChase == true)
                 { 
-                    alertAudioVarSource.ReproducirSonidoConVariacion();
+                    
                     //chase player script
                     Vector3 playerPosition = player.transform.position;
 

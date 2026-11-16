@@ -16,9 +16,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int currentLife;
     [SerializeField] private int maximunLife;
 
+    [SerializeField] GameObject dolor;
+    [SerializeField] AudioSource dolorAudioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        dolorAudioSource=dolor.GetComponent<AudioSource>();
         animator = GetComponentInChildren<Animator>();
         currentLife = maximunLife;
         currentspeed = speedWalk;
@@ -85,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Collision.gameObject.CompareTag("Enemy"))
         {
+            dolorAudioSource.Play();
             currentLife--;
             Debug.Log("tu vida es " + currentLife);
 

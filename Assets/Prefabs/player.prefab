@@ -747,6 +747,8 @@ MonoBehaviour:
   IsRunning: 0
   currentLife: 10
   maximunLife: 10
+  dolor: {fileID: 0}
+  dolorAudioSource: {fileID: 0}
 --- !u!114 &5136142704040306224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,7 +809,7 @@ MonoBehaviour:
   sanityToSpawn: 72
   timerFakeMSpawner: 60
   timerFakeMSpawnerMax: 60
-  fakeMutant: {fileID: 0}
+  fakeMutant: {fileID: 1614863885201389169, guid: 37f93b2fcc6a460458b5a457246ac02b, type: 3}
   spawnerRange: 10
   spawnerCenterPoint: {fileID: 3860228011554603261}
 --- !u!1001 &1340427456685821328

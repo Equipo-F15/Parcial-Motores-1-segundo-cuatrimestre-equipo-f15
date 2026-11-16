@@ -8,6 +8,11 @@ public class InventoryUI : MonoBehaviour
     // Referencia al inventario del jugador.
     [SerializeField] private ItemsManager itemsManager;
 
+    // Sistema de vida del jugador.
+    [SerializeField] private HealthBar healthBar;
+    // Sistema de cordura del jugador.
+    [SerializeField] private SanityScript sanityScript;
+
     // Las 8 imágenes donde mostrar los objetos.
     [SerializeField] private Image[] slotIcons = new Image[8];
     // Los 8 botones que permiten seleccionar las casillas.
@@ -246,7 +251,23 @@ public class InventoryUI : MonoBehaviour
             Debug.Log("El frasco ya no tiene dosis.");
             return;
         }
+        // Si el objeto es un botiquín y tenemos la vida llena, impide su uso.
+        if (selectedItem.itemData.itemName == "Botiquin" && healthBar != null && healthBar.currentHealth >= healthBar.maxHealth)
+        {
+            Debug.Log("No podés usar el botiquín porque tenés la vida llena.");
+            return;
+        }
+        // Recupera la vida indicada en el objeto.
+        if (selectedItem.itemData.healthRecovery > 0 && healthBar != null)
+        {
+            healthBar.Heal(selectedItem.itemData.healthRecovery);
+        }
 
+        // Recupera la cordura indicada en el objeto.
+        if (selectedItem.itemData.sanityRecovery > 0 && sanityScript != null)
+        {
+            sanityScript.SanityUp(selectedItem.itemData.sanityRecovery);
+        }
         // Consume una del frasco seleccionado.
         selectedItem.remainingUses--;
 

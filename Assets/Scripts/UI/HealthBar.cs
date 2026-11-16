@@ -28,6 +28,16 @@ public class HealthBar : MonoBehaviour
         if (currentHealth <= 0f) Die();
     }
 
+    // Recupera vida sin superar el máximo permitido.
+    public void Heal(float amount)
+    {
+        // Aumenta la vida y limita el resultado a maxHealth.
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0f, maxHealth);
+
+        // Actualiza la barra visual del jugador.
+        healthBar.fillAmount = currentHealth / maxHealth;
+    }
+
     private void Die()
     {
         isDead = true;

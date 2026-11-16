@@ -84,6 +84,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     //fin update
+
+    void Healing(int amount)
+    {
+        currentLife += amount;
+        currentLife = Mathf.Clamp(currentLife, 0, maximunLife);
+    }
      
     void OnCollisionEnter(Collision Collision)
     {

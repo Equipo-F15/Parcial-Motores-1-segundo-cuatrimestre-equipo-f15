@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class DoorDialogue : MonoBehaviour
+public class DoorDialogue : MonoBehaviour, IInteractable
 {
     [Header("Configuración del diálogo")]
     public AudioClip dialogueAudio; // Audio que reproducirá esta puerta.
@@ -15,7 +15,6 @@ public class DoorDialogue : MonoBehaviour
     [Header("Subtítulos")]
     public TextMeshProUGUI subtitleText; // Referencia al texto que creamos dentro de DialogueCanvas.
 
-    private Camera fpsCam; // Guarda la cámara principal del jugador.
     private AudioSource audioSource; // Componente encargado de reproducir la voz.
     private bool dialoguePlaying; // Indica si esta puerta está reproduciendo un diálogo.
 
@@ -24,9 +23,6 @@ public class DoorDialogue : MonoBehaviour
 
     void Start()
     {
-        // Busca la cámara principal del jugador.
-        fpsCam = Camera.main;
-
         // Busca si esta puerta ya tiene un componente AudioSource.
         audioSource = GetComponent<AudioSource>();
 
@@ -49,7 +45,7 @@ public class DoorDialogue : MonoBehaviour
         }
     }
 
-    void Update()
+    public void Interact()
     {
         // Si esta puerta estaba hablando, pero el audio ya no suena...
         if (dialoguePlaying && !audioSource.isPlaying)
@@ -74,48 +70,27 @@ public class DoorDialogue : MonoBehaviour
             return;
         }
 
-        // Si no encuentra la cámara o no asigna un audio, detiene este Update.
-        if (fpsCam == null || dialogueAudio == null)
+
+
+        // Asigna al AudioSource el archivo de voz configurado.
+        audioSource.clip = dialogueAudio;
+
+        // Reproduce la voz del habitante.
+        audioSource.Play();
+
+        // Indica que esta puerta está reproduciendo un diálogo.
+        dialoguePlaying = true;
+
+        // Registra esta puerta como la que está hablando actualmente.
+        activeDialogue = this;
+
+        // Si asigna un texto de subtítulos en el Inspector...
+        if (subtitleText != null)
         {
-            return;
+            subtitleText.text = subtitle; // Muestra la frase correspondiente al audio.
+            subtitleText.gameObject.SetActive(true); // Hace visible el subtítulo.
         }
 
-        // Crea un rayo que sale desde el centro de la cámara hacia adelante.
-        Ray ray = fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
-        // Esta variable guardará la información del objeto que toque el rayo.
-        RaycastHit hit;
-
-        // Comprobacion si el rayo toca algún Collider dentro de la distancia permitida.
-        if (Physics.Raycast(ray, out hit, reachRange))
-        {
-            // Comprobar si el Collider pertenece a esta puerta o a uno de sus hijos.
-            if (hit.collider.transform == transform || hit.collider.transform.IsChildOf(transform))
-            {
-                // Si el jugador suelta la tecla E mientras apunta a esta puerta...
-                if (Input.GetKeyUp(KeyCode.E))
-                {
-                    // Asigna al AudioSource el archivo de voz configurado.
-                    audioSource.clip = dialogueAudio;
-
-                    // Reproduce la voz del habitante.
-                    audioSource.Play();
-
-                    // Indica que esta puerta está reproduciendo un diálogo.
-                    dialoguePlaying = true;
-
-                    // Registra esta puerta como la que está hablando actualmente.
-                    activeDialogue = this;
-
-                    // Si asigna un texto de subtítulos en el Inspector...
-                    if (subtitleText != null)
-                    {
-                        subtitleText.text = subtitle; // Muestra la frase correspondiente al audio.
-                        subtitleText.gameObject.SetActive(true); // Hace visible el subtítulo.
-                    }
-                }
-            }
-        }
     }
     // Unity ejecuta este método cuando el componente o su GameObject se desactiva.
     void OnDisable()

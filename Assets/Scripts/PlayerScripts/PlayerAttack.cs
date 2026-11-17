@@ -6,9 +6,11 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform rayOrigin;
     [SerializeField] private KnifeBarUI knifeBar;
     private LifeScript lifeScript;
+    Animator animator;
 
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         if (knifeBar == null)
         {
             knifeBar = FindFirstObjectByType<KnifeBarUI>();
@@ -17,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
             if (knifeBar != null && !knifeBar.HasUses())
@@ -33,6 +36,7 @@ public class PlayerAttack : MonoBehaviour
 
                 if (lifeScript != null)
                 {
+                    animator.SetBool("IsAttacking", true);
                     lifeScript.TakesDamage(1);
                     if (knifeBar != null) knifeBar.UseKnife();
                 }
@@ -43,4 +47,9 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
-}
+
+        public void StopAttack()
+        {
+            animator.SetBool("IsAttacking", false);
+        }
+    }

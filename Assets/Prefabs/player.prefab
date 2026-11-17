@@ -747,7 +747,7 @@ MonoBehaviour:
   IsRunning: 0
   currentLife: 10
   maximunLife: 10
-  dolor: {fileID: 0}
+  dolor: {fileID: 4800383778375891219}
   dolorAudioSource: {fileID: 0}
 --- !u!114 &5136142704040306224
 MonoBehaviour:

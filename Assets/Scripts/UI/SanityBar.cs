@@ -3,18 +3,30 @@ using UnityEngine.UI;
 
 public class SanityBarUI : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
     [SerializeField] private Image fillImage;
-    [SerializeField] private float maxSanity = 100f; // same value as sanityMax in SanityScript
+    [SerializeField] private float maxSanity = 240f; 
 
     private SanityScript sanityScript;
 
     private void Start()
     {
-        sanityScript = FindFirstObjectByType<SanityScript>();
+        
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player == null)
+        {
+            Debug.LogWarning("SanityBarUI: no object with tag Player found", this);
+            enabled = false;
+            return;
+        }
+
+        sanityScript = player.GetComponent<SanityScript>();
 
         if (sanityScript == null)
         {
-            Debug.LogError("SanityBarUI: no SanityScript found in the scene", this);
+            Debug.LogWarning("SanityBarUI: the player has no SanityScript", this);
             enabled = false;
             return;
         }

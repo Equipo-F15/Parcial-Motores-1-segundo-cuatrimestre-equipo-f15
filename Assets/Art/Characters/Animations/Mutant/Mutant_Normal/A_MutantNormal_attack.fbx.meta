@@ -56,7 +56,7 @@ ModelImporter:
       curves: []
       events:
       - time: 1
-        functionName: StopAttacking()
+        functionName: StopAttacking
         data: 
         objectReferenceParameter: {fileID: 8690491793394207732, guid: eacce4827200dd941a04abeb306cde9a, type: 3}
         floatParameter: 0

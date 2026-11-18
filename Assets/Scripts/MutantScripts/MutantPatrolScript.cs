@@ -56,8 +56,6 @@ public class MutantPatrolScript : MonoBehaviour
         if (playerChase == true)
         {
             idleAudioSource.Stop();
-           
-
             animator.SetBool("Running", true);
 
         }

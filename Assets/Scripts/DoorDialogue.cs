@@ -45,32 +45,36 @@ public class DoorDialogue : MonoBehaviour, IInteractable
         }
     }
 
-    public void Interact()
+    void Update()
     {
-        // Si esta puerta estaba hablando, pero el audio ya no suena...
+        // Si esta puerta estaba reproduciendo un diálogo y el audio terminó...
         if (dialoguePlaying && !audioSource.isPlaying)
         {
-            dialoguePlaying = false; // Indica que terminó el diálogo.
+            // Indica que el diálogo terminó.
+            dialoguePlaying = false;
 
-            // Comprobacion que esta puerta sea la que estaba hablando.
+            // Comprueba que esta puerta sea la que estaba hablando.
             if (activeDialogue == this)
             {
-                activeDialogue = null; // Libera el sistema para que otra puerta pueda hablar.
+                // Libera el sistema para permitir otros diálogos.
+                activeDialogue = null;
 
-                // Oculta el subtítulo cuando termina el audio.
+                // Oculta los subtítulos cuando termina la voz.
                 if (subtitleText != null)
                 {
                     subtitleText.gameObject.SetActive(false);
                 }
             }
         }
+    }
+
+    public void Interact()
+    {
         // Si otra puerta está hablando, no permite iniciar un nuevo diálogo.
         if (activeDialogue != null)
         {
             return;
         }
-
-
 
         // Asigna al AudioSource el archivo de voz configurado.
         audioSource.clip = dialogueAudio;

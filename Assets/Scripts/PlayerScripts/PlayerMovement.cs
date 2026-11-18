@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -85,11 +86,16 @@ public class PlayerMovement : MonoBehaviour
     }
     //fin update
 
-    void Healing(int amount)
+    public void Healing(int amount)
     {
         currentLife += amount;
         currentLife = Mathf.Clamp(currentLife, 0, maximunLife);
     }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+            }
      
     void OnCollisionEnter(Collision Collision)
     {

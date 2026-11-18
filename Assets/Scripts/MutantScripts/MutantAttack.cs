@@ -38,4 +38,10 @@ public class MutantAttack : MonoBehaviour
             } 
         }
     }
+
+
+    public void StopAttaking()
+    {
+        animator.SetBool("isAttacking", false);
+    }
 }

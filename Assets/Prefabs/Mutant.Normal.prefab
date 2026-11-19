@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyVision
   player: {fileID: 7828392009811505849, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
-  detectRange: 240
+  detectRange: 360
   detectAngle: 60
 --- !u!114 &2311580192963829152
 MonoBehaviour:

@@ -27107,6 +27107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d056343290a000d4d9ed51e0061bfcb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EscapeZone
+  keyItem: {fileID: 11400000, guid: 8547d9963331f7343ab2c332b5725306, type: 2}
 --- !u!65 &905160336
 BoxCollider:
   m_ObjectHideFlags: 0

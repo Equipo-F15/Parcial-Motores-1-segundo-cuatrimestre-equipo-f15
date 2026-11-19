@@ -774,8 +774,8 @@ MonoBehaviour:
   maxStamina: 20
   sprintTimer: 0
   IsRunning: 0
-  currentLife: 10
-  maximunLife: 10
+  currentLife: 100
+  maximunLife: 100
   dolor: {fileID: 4800383778375891219}
   dolorAudioSource: {fileID: 0}
   cansancioAudioSource: {fileID: 8934073564092296028}
@@ -821,9 +821,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   attackRange: 3
   rayOrigin: {fileID: 3860228011554603261}
-  knifeBar: {fileID: 0}
-  itemsManager: {fileID: 0}
-  knifeData: {fileID: 0}
+  itemsManager: {fileID: 1660058101577085512}
+  knifeData: {fileID: 11400000, guid: d146fca31da6e9f4ebd94236e7a4fe9a, type: 2}
 --- !u!114 &3718014706243530176
 MonoBehaviour:
   m_ObjectHideFlags: 0

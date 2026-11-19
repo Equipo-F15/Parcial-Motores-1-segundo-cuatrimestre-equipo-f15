@@ -8,7 +8,9 @@ public class MutantAttack : MonoBehaviour
     public float distanceToAttack;
     public float attackDelay;
     public float attackAngle;
-   [SerializeField] private float damage;
+   [SerializeField] private int damage;
+
+    PlayerMovement playerscript;
 
     private Animator animator;
 
@@ -16,6 +18,7 @@ public class MutantAttack : MonoBehaviour
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        playerscript = player.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -31,7 +34,7 @@ public class MutantAttack : MonoBehaviour
             if (angle < attackAngle && angle > -1 * attackAngle)
             {
                 animator.SetBool("isAttacking",true);
-                //player.TakeDamage(damage);
+                playerscript.TakeDamage(damage);
                 WaitForSeconds wait = new WaitForSeconds(attackDelay);
                 Debug.Log("Player in angle");
 

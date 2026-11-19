@@ -406,6 +406,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 852807aef60d9f44791893eee0e62e1a, type: 3}
   variacionVolume: 0.1
   variacionPitch: 0.1
+  animator: {fileID: 0}
+  sonidosCorrer: {fileID: 0}
 --- !u!1 &8690491793394207732
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,8 +484,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyVision
   player: {fileID: 7828392009811505849, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
-  detectRange: 50
-  detectAngle: 45
+  detectRange: 360
+  detectAngle: 360
 --- !u!114 &2311580192963829152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,7 +519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MutantAttack
   player: {fileID: 7828392009811505849, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
   distanceToPlayer: 0
-  distanceToAttack: 3
+  distanceToAttack: 24
   attackDelay: 5
   attackAngle: 10
   damage: 1

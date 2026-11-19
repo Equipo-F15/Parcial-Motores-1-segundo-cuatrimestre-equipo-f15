@@ -16,10 +16,13 @@ public class EnemyVision : MonoBehaviour
     MutantChaseScript chaseScript;
     MutantPatrolScript patrolScript;
 
+    LayerMask playerlayer;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerlayer = LayerMask.GetMask("Player");
         chaseScript = GetComponent<MutantChaseScript>();
         patrolScript= GetComponent < MutantPatrolScript>();
     }
@@ -36,16 +39,16 @@ public class EnemyVision : MonoBehaviour
         { playerIsInRange = false; }
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, (player.transform.position - transform.position), out hit, Mathf.Infinity))
+
+
+        if (Physics.Raycast(transform.position, (player.transform.position - transform.position), detectRange, playerlayer))
         {
-            if (hit.transform == player.transform)
-            {
-                playerIsNotHidden = true;
-                //Debug.Log("Player in open");
-            }
-            else { playerIsNotHidden = false; }
+            playerIsNotHidden = true;
+            Debug.Log("Player in open");
+            
         }
-        
+        else { playerIsNotHidden = false; }
+
         Vector3 side1 = player.transform.position - transform.position;
         Vector3 side2 = transform.forward;
         float angle=  Vector3.SignedAngle(side1, side2, Vector3.up);
@@ -54,7 +57,9 @@ public class EnemyVision : MonoBehaviour
         { playerIsInAngle=true;}
         else { playerIsInAngle = false; }
 
-        if(playerIsInAngle == true && playerIsInRange == true && playerIsNotHidden == true)
+        //&& playerIsNotHidden == true
+
+        if (playerIsInAngle == true && playerIsInRange == true )
         { chaseScript.playerChase = true;
         patrolScript.playerChase = true;
         }

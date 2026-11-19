@@ -107,6 +107,11 @@ public class PlayerMovement : MonoBehaviour
         currentLife = Mathf.Clamp(currentLife, 0, maximunLife);
     }
 
+    public void TakeDamage(int damage)
+    {
+        currentLife -= damage;
+    }
+
     public void GameOver()
     {
         SceneManager.LoadScene("GameOver");

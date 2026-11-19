@@ -41,14 +41,11 @@ public class EnemyVision : MonoBehaviour
         RaycastHit hit;
 
 
-        if (Physics.Raycast(transform.position, (player.transform.position - transform.position),  10, playerlayer))
+        if (Physics.Raycast(transform.position, (player.transform.position - transform.position), detectRange, playerlayer))
         {
             playerIsNotHidden = true;
             Debug.Log("Player in open");
-            //if (hit.transform == player.transform)
-            //{
-
-            //}
+            
         }
         else { playerIsNotHidden = false; }
 
@@ -60,7 +57,9 @@ public class EnemyVision : MonoBehaviour
         { playerIsInAngle=true;}
         else { playerIsInAngle = false; }
 
-        if(playerIsInAngle == true && playerIsInRange == true && playerIsNotHidden == true)
+        //&& playerIsNotHidden == true
+
+        if (playerIsInAngle == true && playerIsInRange == true )
         { chaseScript.playerChase = true;
         patrolScript.playerChase = true;
         }

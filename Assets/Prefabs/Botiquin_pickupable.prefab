@@ -118,3 +118,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 11400000, guid: cdcf42f5c79fa9642afa531764a0c143, type: 2}
+  sonidoRecoger: {fileID: 8300000, guid: 65bbac9e946c99e49b4c1f53a75e8344, type: 3}

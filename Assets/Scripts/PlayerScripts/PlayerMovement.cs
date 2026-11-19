@@ -121,7 +121,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Collision.gameObject.CompareTag("Enemy"))
         {
-            dolorAudioSource.Play();
+            dolor.GetComponent<VariacionSFX>().ReproducirSonidoConVariacion(); // Reproduce uno de los tres gritos de dolor con variaciones de tono y volumen.
+
             currentLife--;
             Debug.Log("tu vida es " + currentLife);
 

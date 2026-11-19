@@ -92657,6 +92657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b97d924801c4b5c4d81643a634094c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
+  itemData: {fileID: 0}
 --- !u!136 &1049144122
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -93518,6 +93519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b97d924801c4b5c4d81643a634094c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
+  itemData: {fileID: 0}
 --- !u!136 &1076398755
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -95593,6 +95595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b97d924801c4b5c4d81643a634094c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
+  itemData: {fileID: 0}
 --- !u!136 &1208539258
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -116734,6 +116737,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorExit
   openAngle: 90
+  itemsManager: {fileID: 0}
+  requiredKey: {fileID: 0}
 --- !u!43 &1873387676
 Mesh:
   m_ObjectHideFlags: 0

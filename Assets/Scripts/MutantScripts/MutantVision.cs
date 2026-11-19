@@ -14,12 +14,14 @@ public class EnemyVision : MonoBehaviour
     [SerializeField] private float detectAngle;
 
     MutantChaseScript chaseScript;
+    MutantPatrolScript patrolScript;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         chaseScript = GetComponent<MutantChaseScript>();
+        patrolScript= GetComponent < MutantPatrolScript>();
     }
 
     // Update is called once per frame
@@ -53,7 +55,9 @@ public class EnemyVision : MonoBehaviour
         else { playerIsInAngle = false; }
 
         if(playerIsInAngle == true && playerIsInRange == true && playerIsNotHidden == true)
-        { chaseScript.playerChase = true; }
+        { chaseScript.playerChase = true;
+        patrolScript.playerChase = true;
+        }
 
     }
 }

@@ -35,6 +35,8 @@ public class InventoryUI : MonoBehaviour
 
     [SerializeField] private Button useButton; // Botón que permitirá utilizar el objeto seleccionado.
     [SerializeField] private Button combineButton; // Botón que permitirá combinar objetos del inventario.
+    [Header("Sonido de reparación")]
+    [SerializeField] private AudioClip sonidoReparar; // Sonido que se reproduce al reparar el arma.
 
     private void Start()
     {
@@ -149,6 +151,17 @@ public class InventoryUI : MonoBehaviour
                         if (repaired)
                         {
                             Debug.Log("Combinación realizada correctamente.");
+
+                            // Reproduce el sonido de reparación desde el AudioSource del jugador.
+                            if (playerMovement != null && sonidoReparar != null)
+                            {
+                                AudioSource audioJugador = playerMovement.GetComponent<AudioSource>();
+
+                                if (audioJugador != null)
+                                {
+                                    audioJugador.PlayOneShot(sonidoReparar);
+                                }
+                            }
                         }
                         else
                         {

@@ -4,6 +4,8 @@ public class ItemPickup : MonoBehaviour
 {
     // Objeto que representa este GameObject del escenario.
     [SerializeField] private ItemData itemData;
+    [Header("Sonido de recolección")]
+    [SerializeField] private AudioClip sonidoRecoger; // Sonido que se reproduce al recoger el objeto.
 
     // Se ejecuta cuando otro Collider entra en el Trigger de este objeto.
     private void OnTriggerEnter(Collider other)
@@ -27,9 +29,22 @@ public class ItemPickup : MonoBehaviour
         // Intenta agregar el objeto al inventario.
         bool collected = inventory.AddItem(itemData);
 
-        // Solamente destruye el objeto del escenario cuando se agregó correctamente al inventario.
         if (collected)
         {
+            // Reproduce el sonido desde el jugador para que no se corte al destruir el objeto.
+            if (sonidoRecoger != null)
+            {
+                // Busca el AudioSource del jugador que recogió el objeto.
+                AudioSource audioJugador = other.GetComponent<AudioSource>();
+
+                // Reproduce el sonido desde el jugador, sin depender de la distancia.
+                if (audioJugador != null)
+                {
+                    audioJugador.PlayOneShot(sonidoRecoger);
+                }
+            }
+
+            // Elimina el objeto del escenario después de recogerlo.
             Destroy(gameObject);
         }
     }

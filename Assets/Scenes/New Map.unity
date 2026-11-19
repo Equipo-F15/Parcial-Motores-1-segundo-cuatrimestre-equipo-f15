@@ -3153,6 +3153,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1835497548463509216, guid: 3fd8acbeeee3f4f4f980e3be6bc41e1d, type: 3}
   m_PrefabInstance: {fileID: 199954177}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &201442635 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 863907160019376324, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+  m_PrefabInstance: {fileID: 815278701}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07aa8d739f5562d41a76f56543df6b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VariacionSFX
 --- !u!1001 &203473591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11739,6 +11750,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 290859e400233d44cb5418466d44a995, type: 3}
+--- !u!95 &587636891 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8265444365702651955, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+  m_PrefabInstance: {fileID: 815278701}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &594101852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28188,9 +28204,45 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 450522659024307132, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 450522659024307132, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 450522659024307132, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: -6247455289659645737, guid: 5c71e83be82d55044a9c306573683354, type: 2}
+    - target: {fileID: 863907160019376324, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: evitarSuperposicion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 863907160019376324, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: clipsDeSonido.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 863907160019376324, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: 'clipsDeSonido.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: bffe54591cef74b43b2e99073eeacfe3, type: 3}
+    - target: {fileID: 863907160019376324, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: 'clipsDeSonido.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 61453ef6d21b87a47aa5d2b4514131b9, type: 3}
+    - target: {fileID: 863907160019376324, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: 'clipsDeSonido.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: da7d0cb8c8a3de242aab0ffd5826079b, type: 3}
+    - target: {fileID: 863907160019376324, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: 'clipsDeSonido.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: fd4176bc0a4ea1443a414c22e27d0cf6, type: 3}
+    - target: {fileID: 1796443574292431622, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3580211093741642181, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -28250,6 +28302,30 @@ PrefabInstance:
     - target: {fileID: 4437867009307263202, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
       propertyPath: m_LocalRotation.z
       value: 1.8459298e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483094978317044371, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483094978317044371, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -6247455289659645737, guid: 5c71e83be82d55044a9c306573683354, type: 2}
+    - target: {fileID: 7136773470719164526, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: cansancioAudioSource
+      value: 
+      objectReference: {fileID: 2144681249}
+    - target: {fileID: 7512079546636687456, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 587636891}
+    - target: {fileID: 7512079546636687456, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: sonidosCorrer
+      value: 
+      objectReference: {fileID: 201442635}
+    - target: {fileID: 7512079546636687456, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+      propertyPath: evitarSuperposicion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7828392009811505849, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
       propertyPath: m_Name
@@ -70129,6 +70205,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8322082885998047835, guid: 290859e400233d44cb5418466d44a995, type: 3}
   m_PrefabInstance: {fileID: 1887181509}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2144681249 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8934073564092296028, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}
+  m_PrefabInstance: {fileID: 815278701}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2145288250 stripped
 Transform:

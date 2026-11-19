@@ -14,6 +14,10 @@ public class VariacionSFX : MonoBehaviour
     private float volumenOriginal;
     private float pitchOriginal;
 
+    [Header("Sonidos de carrera")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private VariacionSFX sonidosCorrer;
+
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -24,6 +28,13 @@ public class VariacionSFX : MonoBehaviour
     // Esta es la función que se llamará desde otros scripts o eventos
     public void ReproducirSonidoConVariacion()
     {
+        // Si este componente controla los pasos y el personaje está corriendo, utiliza los sonidos configurados en Correr_Jugador.
+        if (animator != null && sonidosCorrer != null && animator.GetBool("IsRunning"))
+        {
+            sonidosCorrer.ReproducirSonidoConVariacion();
+            return;
+        }
+
         if (clipsDeSonido == null || clipsDeSonido.Length == 0) return;
 
         // 1. Elegir un clip al azar de la lista
@@ -35,6 +46,6 @@ public class VariacionSFX : MonoBehaviour
         audioSource.pitch = pitchOriginal + Random.Range(-variacionPitch, variacionPitch);
 
         // 3. Reproducir
-        audioSource.Play();
+        audioSource.PlayOneShot(audioSource.clip);
     }
 }

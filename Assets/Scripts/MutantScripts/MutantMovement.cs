@@ -50,7 +50,7 @@ public class MutantChaseScript : LifeScript
         }
 
 
-            if (playerChase == true && attackScript.distanceToPlayer >= attackScript.distanceToAttack)
+            if (playerChase == true)
         {
             alertAudioVarSource.ReproducirSonidoConVariacion();
             while (playerChase == true)

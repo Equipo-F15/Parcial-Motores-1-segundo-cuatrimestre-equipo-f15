@@ -8,9 +8,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3564142711687301950, guid: 49baa6d100be19c4390d30698673ea66, type: 3}
+      propertyPath: sonidoRecoger
+      value: 
+      objectReference: {fileID: 8300000, guid: 65bbac9e946c99e49b4c1f53a75e8344, type: 3}
     - target: {fileID: 7267900734260717731, guid: 49baa6d100be19c4390d30698673ea66, type: 3}
       propertyPath: m_Name
-      value: Cuchillo Variant
+      value: Cuchillo_pickupable
       objectReference: {fileID: 0}
     - target: {fileID: 8040919408225907225, guid: 49baa6d100be19c4390d30698673ea66, type: 3}
       propertyPath: m_LocalPosition.x

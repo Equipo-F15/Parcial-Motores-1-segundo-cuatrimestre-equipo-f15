@@ -7,6 +7,7 @@ public class MutantAttack : MonoBehaviour
     public float distanceToPlayer;
     public float distanceToAttack;
     public float attackDelay;
+    public float maxAttackDelay;
     public float attackAngle;
    [SerializeField] private int damage;
 
@@ -24,6 +25,8 @@ public class MutantAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        attackDelay -= Time.deltaTime;
+        Mathf.Clamp(attackDelay, 0, maxAttackDelay);
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         if (distanceToPlayer <= distanceToAttack)
         {
@@ -33,10 +36,13 @@ public class MutantAttack : MonoBehaviour
 
             if (angle < attackAngle && angle > -1 * attackAngle)
             {
-                animator.SetBool("isAttacking",true);
-                playerscript.TakeDamage(damage);
-                WaitForSeconds wait = new WaitForSeconds(attackDelay);
-                Debug.Log("Player in angle");
+                if (attackDelay <= 0)
+                {
+                    animator.SetBool("isAttacking", true);
+                    playerscript.TakeDamage(damage);
+                    //WaitForSeconds wait = new WaitForSeconds(attackDelay);
+                    Debug.Log("Player in angle");
+                }
 
             } 
         }

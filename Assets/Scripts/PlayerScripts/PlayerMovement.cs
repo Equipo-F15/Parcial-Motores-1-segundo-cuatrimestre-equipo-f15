@@ -17,8 +17,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int currentLife;
     [SerializeField] private int maximunLife;
 
+    public int CurrentLife => currentLife; // Permite que otros scripts consulten la vida actual del jugador.
+    public int MaximumLife => maximunLife;  // Permite que otros scripts consulten la vida máxima del jugador.
+
     [SerializeField] GameObject dolor;
     [SerializeField] AudioSource dolorAudioSource;
+    [SerializeField] private AudioSource cansancioAudioSource; // AudioSource del objeto Cansancio_Jugador.
+    private bool sonidoCansancioReproducido = false; // Evita repetir el sonido mientras la energía esté agotada.
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,7 +49,12 @@ public class PlayerMovement : MonoBehaviour
             sprintTimer += Time.deltaTime;
             //Debug.Log(sprintTimer);
         }
-        
+        // Permite volver a reproducir el cansancio cuando se haya recuperado suficiente energía.
+        if (sprintTimer >= maxStamina * 0.5f)
+        {
+            sonidoCansancioReproducido = false;
+        }
+
 
         if (Input.GetKey(KeyCode.W) )
         {
@@ -56,6 +66,11 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("IsRunning", true);
                 sprintTimer = sprintTimer-2*Time.deltaTime;
                 //Debug.Log(sprintTimer);
+                if (sprintTimer <= 0 && !sonidoCansancioReproducido) // Si la energía llegó a cero, reproduce el sonido de cansancio una sola vez.
+                {
+                    cansancioAudioSource.PlayOneShot(cansancioAudioSource.clip);
+                    sonidoCansancioReproducido = true;
+                }
             }
             else
             {

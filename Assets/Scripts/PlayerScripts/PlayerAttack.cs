@@ -4,7 +4,6 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] float attackRange;
     [SerializeField] private Transform rayOrigin;
-    [SerializeField] private KnifeBarUI knifeBar;
     private LifeScript lifeScript;
     Animator animator;
 
@@ -15,10 +14,6 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        if (knifeBar == null)
-        {
-            knifeBar = FindFirstObjectByType<KnifeBarUI>();
-        }
     }
 
     void Update()
@@ -50,12 +45,6 @@ public class PlayerAttack : MonoBehaviour
                 return;
             }
 
-            if (knifeBar != null && !knifeBar.HasUses())
-            {
-                Debug.Log("The knife is broken, you cannot use it anymore");
-                return;
-            }
-
             RaycastHit hit;
             bool huboImpacto = Physics.Raycast(rayOrigin.position, rayOrigin.forward, out hit, attackRange);
             if (huboImpacto)
@@ -67,7 +56,6 @@ public class PlayerAttack : MonoBehaviour
                     animator.SetBool("IsAttacking", true);
                     lifeScript.TakesDamage(1);
                     itemsManager.ReduceDurability(knifeData, 1);
-                    if (knifeBar != null) knifeBar.UseKnife();
                 }
                 else
                 {

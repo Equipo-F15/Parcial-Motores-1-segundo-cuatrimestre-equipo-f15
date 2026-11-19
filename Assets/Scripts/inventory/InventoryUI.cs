@@ -7,9 +7,9 @@ public class InventoryUI : MonoBehaviour
 {
     // Referencia al inventario del jugador.
     [SerializeField] private ItemsManager itemsManager;
-
-    // Sistema de vida del jugador.
-    [SerializeField] private HealthBar healthBar;
+    
+    // Sistema de vida utilizado por el jugador de la escena principal.
+    [SerializeField] private PlayerMovement playerMovement;
     // Sistema de cordura del jugador.
     [SerializeField] private SanityScript sanityScript;
 
@@ -251,16 +251,25 @@ public class InventoryUI : MonoBehaviour
             Debug.Log("El frasco ya no tiene dosis.");
             return;
         }
-        // Si el objeto es un botiquín y tenemos la vida llena, impide su uso.
-        if (selectedItem.itemData.itemName == "Botiquin" && healthBar != null && healthBar.currentHealth >= healthBar.maxHealth)
+        // Comprueba si el jugador tiene la vida llena.
+        bool fullHealth = false;
+
+        if (playerMovement != null)
+        {
+            fullHealth = playerMovement.CurrentLife >= playerMovement.MaximumLife;
+        }
+
+        // Impide utilizar el botiquín cuando el jugador tiene toda la vida.
+        if (selectedItem.itemData.itemName == "Botiquin" && fullHealth)
         {
             Debug.Log("No podés usar el botiquín porque tenés la vida llena.");
             return;
         }
-        // Recupera la vida indicada en el objeto.
-        if (selectedItem.itemData.healthRecovery > 0 && healthBar != null)
+
+        // Recupera la vida utilizando el sistema del jugador principal.
+        if (selectedItem.itemData.healthRecovery > 0 && playerMovement != null)
         {
-            healthBar.Heal(selectedItem.itemData.healthRecovery);
+            playerMovement.Healing(Mathf.RoundToInt(selectedItem.itemData.healthRecovery)); // Convierte la curación a entero porque Healing() recibe un int.
         }
 
         // Recupera la cordura indicada en el objeto.

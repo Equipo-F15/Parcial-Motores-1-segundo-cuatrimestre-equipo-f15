@@ -62,7 +62,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.9299363
+      - time: 0.8290059
         functionName: ReproducirSonidoConVariacion
         data: 
         objectReferenceParameter: {fileID: 7828392009811505849, guid: 6c9786d5981ce7240839b90ee1b859da, type: 3}

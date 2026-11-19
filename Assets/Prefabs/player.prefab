@@ -149,6 +149,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 01b9e6f9d43eb5b4a938875d58b844b2, type: 3}
   variacionVolume: 0.1
   variacionPitch: 0.1
+  animator: {fileID: 0}
+  sonidosCorrer: {fileID: 0}
 --- !u!1 &2126428637981676283
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,6 +428,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c28d971e4b691d045a5e074955915203, type: 3}
   variacionVolume: 0.1
   variacionPitch: 0.1
+  animator: {fileID: 0}
+  sonidosCorrer: {fileID: 0}
 --- !u!1 &4982685310820573324
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +476,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.9
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -575,6 +579,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fd4176bc0a4ea1443a414c22e27d0cf6, type: 3}
   variacionVolume: 0.1
   variacionPitch: 0.1
+  animator: {fileID: 0}
+  sonidosCorrer: {fileID: 0}
 --- !u!1 &7828392009811505849
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +755,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 01b9e6f9d43eb5b4a938875d58b844b2, type: 3}
   variacionVolume: 0.1
   variacionPitch: 0.1
+  animator: {fileID: 0}
+  sonidosCorrer: {fileID: 0}
 --- !u!114 &7136773470719164526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,10 +774,11 @@ MonoBehaviour:
   maxStamina: 20
   sprintTimer: 0
   IsRunning: 0
-  currentLife: 10
-  maximunLife: 10
+  currentLife: 100
+  maximunLife: 100
   dolor: {fileID: 4800383778375891219}
   dolorAudioSource: {fileID: 0}
+  cansancioAudioSource: {fileID: 8934073564092296028}
 --- !u!114 &5136142704040306224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,9 +821,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   attackRange: 3
   rayOrigin: {fileID: 3860228011554603261}
-  knifeBar: {fileID: 0}
-  itemsManager: {fileID: 0}
-  knifeData: {fileID: 0}
+  itemsManager: {fileID: 1660058101577085512}
+  knifeData: {fileID: 11400000, guid: d146fca31da6e9f4ebd94236e7a4fe9a, type: 2}
 --- !u!114 &3718014706243530176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,15 +986,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3390189226533260658, guid: 3cf4724430263ed47b0527e6e39f9445, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.049813703
+      value: 0.0498137
       objectReference: {fileID: 0}
     - target: {fileID: 3390189226533260658, guid: 3cf4724430263ed47b0527e6e39f9445, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.0000000095725685
       objectReference: {fileID: 0}
     - target: {fileID: 3390189226533260658, guid: 3cf4724430263ed47b0527e6e39f9445, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 1.8459298e-10
       objectReference: {fileID: 0}
     - target: {fileID: 3390189226533260658, guid: 3cf4724430263ed47b0527e6e39f9445, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1272,6 +1280,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 01b9e6f9d43eb5b4a938875d58b844b2, type: 3}
   variacionVolume: 0.1
   variacionPitch: 0.1
+  animator: {fileID: 8265444365702651955}
+  sonidosCorrer: {fileID: 863907160019376324}
 --- !u!82 &4483094978317044371
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1281,7 +1291,7 @@ AudioSource:
   m_GameObject: {fileID: 3238800925402710250}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6247455289659645737, guid: 5c71e83be82d55044a9c306573683354, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

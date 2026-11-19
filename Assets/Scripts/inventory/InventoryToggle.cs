@@ -24,6 +24,10 @@ public class InventoryToggle : MonoBehaviour
 
             // Muestra u oculta el panel.
             inventoryPanel.SetActive(isOpen);
+            // Si el inventario está abierto, libera el cursor. Si está cerrado, vuelve a bloquearlo.
+            Cursor.lockState = isOpen ? CursorLockMode.None : CursorLockMode.Locked;
+            // Muestra el cursor al abrir y lo oculta al cerrar.
+            Cursor.visible = isOpen;
 
             if (inventoryUI != null)
             {

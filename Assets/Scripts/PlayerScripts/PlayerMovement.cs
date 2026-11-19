@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int currentLife;
     [SerializeField] private int maximunLife;
 
+    public int CurrentLife => currentLife; // Permite que otros scripts consulten la vida actual del jugador.
+    public int MaximumLife => maximunLife;  // Permite que otros scripts consulten la vida máxima del jugador.
+
     [SerializeField] GameObject dolor;
     [SerializeField] AudioSource dolorAudioSource;
     [SerializeField] private AudioSource cansancioAudioSource; // AudioSource del objeto Cansancio_Jugador.

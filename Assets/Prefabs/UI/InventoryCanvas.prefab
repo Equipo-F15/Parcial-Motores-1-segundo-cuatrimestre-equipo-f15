@@ -2354,7 +2354,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryUI
   itemsManager: {fileID: 0}
-  healthBar: {fileID: 0}
   playerMovement: {fileID: 0}
   sanityScript: {fileID: 0}
   slotIcons:

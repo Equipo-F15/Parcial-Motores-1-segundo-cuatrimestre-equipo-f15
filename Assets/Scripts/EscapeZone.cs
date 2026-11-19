@@ -3,24 +3,25 @@ using UnityEngine.SceneManagement;
 
 public class EscapeZone : MonoBehaviour
 {
+    [SerializeField] private ItemData keyItem; // the ItemData asset of the key
+
     private bool triggered = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("EscapeZone touched by: " + other.name + " | tag: " + other.tag);
-
         if (triggered) return;
 
-        if (other.CompareTag("Player"))
-        {
-            if (!KeyPickup.hasKey)
-            {
-                Debug.Log("You need the key to escape");
-                return;
-            }
+        if (!other.CompareTag("Player")) return;
 
-            triggered = true;
-            SceneManager.LoadScene("Victory");
+        ItemsManager inventory = other.GetComponent<ItemsManager>();
+
+        if (inventory == null || keyItem == null || !inventory.HasItem(keyItem))
+        {
+            Debug.Log("You need the key to escape");
+            return;
         }
+
+        triggered = true;
+        SceneManager.LoadScene("Victory");
     }
 }

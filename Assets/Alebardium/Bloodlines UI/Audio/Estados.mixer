@@ -6,7 +6,7 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Peligro
+  m_Name: Tranquilidad
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 654821e4db1b43749a64a319b795beb8
   m_FloatValues:
@@ -52,7 +52,7 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Muerte
+  m_Name: Victoria
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 97717f87ab74e3a45b3d0371b37371b6
   m_FloatValues:
@@ -85,7 +85,7 @@ AudioMixerController:
     - c034cedb2e500ce43acc67ebe69f9c0e
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: -7982862144725846595}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -156,7 +156,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: muerte
+  m_Name: 'Victoria '
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: c034cedb2e500ce43acc67ebe69f9c0e
   m_Children: []
@@ -189,7 +189,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Peligro
+  m_Name: Tranquilidad
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: c876ecc3eab856849a647c9be17c18ae
   m_Children: []
